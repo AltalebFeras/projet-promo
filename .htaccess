@@ -1,0 +1,9 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine on
+  RewriteCond %{THE_REQUEST} !^GET.*/public [NC]
+  RewriteRule ^(.*)$ /public/$1 [R=301,NE,L]
+</IfModule>
+
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+</IfModule>

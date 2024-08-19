@@ -1,0 +1,2 @@
+ to be used as a controller for the config between the local and  the remote server.
+ to be work in the remote server the file should be in the public directory
