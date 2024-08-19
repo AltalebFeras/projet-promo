@@ -2,8 +2,7 @@
 
 	<div class="container-fluid">
 		<div class="d-flex flex-column justify-content-between sidebar align-items-center p-3">
-			<?php include_once __DIR__ . '/../includes/sidebar.php'; ?>
-		</div>
+			</div>
 		<div class="main">
 			<div class="container">
 				<div class="row">
