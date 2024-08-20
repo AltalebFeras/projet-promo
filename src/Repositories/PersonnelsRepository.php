@@ -29,16 +29,22 @@ class PersonnelsRepository
             $user = $query->fetch(PDO::FETCH_ASSOC);
 
             if (!$user) {
-                throw new Exception('Incorrect email.');
+                throw new Exception('user not found');
             }
 
             // Verify mdp
             if (!password_verify($mdp, $user['mdp'])) {
-                throw new Exception('Incorrect password.');
+                throw new Exception('Incorrect  mdp.');
             }
             return $user ;
-        } catch (PDOException $e) {
-            throw new Exception($e->getMessage());
+        }catch (PDOException $e) {
+            // Log detailed error message
+            error_log('Database Error: ' . $e->getMessage());
+            if ($e->getCode() == 23000) { // Duplicate entry error code
+                throw new Exception('Username or email already exists.');
+            } else {
+                throw new Exception('An error occurred during registration: ' . $e->getMessage());
+            }
         }
     }
     
@@ -47,6 +53,8 @@ class PersonnelsRepository
         $query = $this->DB->prepare('SELECT * FROM ' . PREFIXE . 'roles WHERE Id_role = :Id_role');
         $query->execute(['Id_role' => $Id_role]);
         $role = $query->fetch(PDO::FETCH_ASSOC);
-        return $role; 
+        // var_dump( $role['nom']);
+        // die();
+        return $role['nom']; 
     }
 }

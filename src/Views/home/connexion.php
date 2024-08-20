@@ -17,9 +17,17 @@
 
 
                     <!-- div for messages -->
-                    <div class="my-3 successAndErrorMessage"></div>
-                    
-                    <? var_dump($_SESSION);?>
+                    <div class="my-3 successAndErrorMessage">
+
+                      <?php if (isset($_GET['error'])): ?>
+                        <div class="alert alert-danger"><?php echo htmlspecialchars($_GET['error']); ?></div>
+                      <?php endif; ?>
+                      <?php if (isset($_GET['success'])): ?>
+                        <div class="alert alert-success"><?php echo htmlspecialchars($_GET['success']); ?></div>
+                      <?php endif; ?>
+                    </div>
+
+                    <?php var_dump($_SESSION); ?>
                     <p class="title text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign in</p>
                     <form action="<?= Domain . HOME_URL  ?>" method="POST" id="formConnexion" class="mx-1 mx-md-4">
                       <div class="d-flex flex-row align-items-center mb-4">
@@ -34,14 +42,14 @@
                           <input type="password" id="mdp" name="mdp" class="form-control" required placeholder="Enter your password">
                         </div>
                       </div>
-                    
+
                       <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                         <button id="submissionButtonSignIn" type="submit" class="btn btn-primary btn-lg">Sign in</button>
                       </div>
                     </form>
-                   
+
                   </div>
-              
+
                 </div>
               </div>
             </div>

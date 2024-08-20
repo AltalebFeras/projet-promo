@@ -17,7 +17,7 @@ class HomeController
     }
     public function deconexion() {
         session_destroy();
-        header('Location: ' . HOME_URL . 'dashboard?success=Vous êtes deconnectés avec succès.');
+        header('Location: ' . HOME_URL .'?success=Vous êtes deconnectés avec succès.');
     }
     public function page404()
     {
