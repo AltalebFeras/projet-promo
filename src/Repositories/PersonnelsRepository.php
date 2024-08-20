@@ -57,4 +57,51 @@ class PersonnelsRepository
         // die();
         return $role['nom']; 
     }
+    public function getAllPersonnels(){
+    
+        $query = $this->DB->query('SELECT * FROM '. PREFIXE.'personnels');
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+    public function getStatutPersonnel($Id_statut_personnels){
+        $query = $this->DB->prepare('SELECT * FROM '. PREFIXE.'statut WHERE Id_statut_personnels = :Id_statut_personnels');
+        $query->execute(['Id_statut_personnels' => $Id_statut_personnels]);
+        $statut = $query->fetch(PDO::FETCH_ASSOC);
+        // var_dump( $statut['nom']);
+        // die();
+        return $statut['nom'];
+    }
+    public function getLastEvaluationForThisPersonnel($Id_personnel)
+    {
+        $query = $this->DB->prepare('SELECT * FROM '. PREFIXE .'evaluations WHERE Id_personnel = :Id_personnel ORDER BY dtc DESC LIMIT 1');
+        $query->execute(['Id_personnel' => $Id_personnel]);
+        $evaluation = $query->fetch(PDO::FETCH_ASSOC);
+    
+        if ($evaluation !== false) {
+            return $evaluation['texte']; 
+        } else {
+            return null; 
+        }
+    }
+    public function getPersonnelById($Id_personnel)
+    {
+        $query = $this->DB->prepare('SELECT * FROM ' . PREFIXE . 'personnels WHERE Id_personnel = :Id_personnel');
+        $query->execute(['Id_personnel' => $Id_personnel]);
+        $personnel = $query->fetch(PDO::FETCH_ASSOC);
+    
+        // Fetch role and status
+        $personnel['role_name'] = $this->getRole($personnel['Id_role']);
+        $personnel['statut_personnels'] = $this->getStatutPersonnel($personnel['Id_statut_personnels']);
+        $personnel['evaluation'] = $this->getLastEvaluationForThisPersonnel($personnel['Id_personnel']);
+    
+        return $personnel;
+    }
+    public function ajouterEvaluation($Id_peronnel, $Id_admin, $texte){
+        $query = $this->DB->prepare('INSERT INTO '. PREFIXE.'evaluations (Id_personnel, Id_admin, texte, dtc) VALUES (:Id_personnel, :Id_admin, :texte, NOW())');
+        $query->execute(['Id_personnel' => $Id_peronnel, 'Id_admin' => $Id_admin, 'texte' => $texte]);
+        return $this->DB->lastInsertId();
+    }
+    
+    
+
 }

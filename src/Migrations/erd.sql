@@ -16,17 +16,17 @@ CREATE TABLE transport_etat
   PRIMARY KEY (Id_etat_vehicule)
 );
 
-CREATE TABLE transport_evaluation
+CREATE TABLE transport_evaluations
 (
-  Id_evaluation  INT          NOT NULL AUTO_INCREMENT,
-  texte          VARCHAR(250) NOT NULL,
-  dtc            DATETIME     NOT NULL,
-  Id_personnel   INT          NOT NULL,
-  Id_personnel_1 INT          NOT NULL,
+  Id_evaluation INT          NOT NULL AUTO_INCREMENT,
+  texte         VARCHAR(250) NOT NULL,
+  dtc           DATETIME     NOT NULL,
+  Id_admin      INT          NOT NULL,
+  Id_personnel  INT          NOT NULL,
   PRIMARY KEY (Id_evaluation)
 );
 
-CREATE TABLE transport_personnel
+CREATE TABLE transport_personnels
 (
   Id_personnel         INT          NOT NULL AUTO_INCREMENT,
   nom                  VARCHAR(50)  NOT NULL,
@@ -68,13 +68,13 @@ CREATE TABLE transport_vehicules
   PRIMARY KEY (Id_vehicule)
 );
 
-ALTER TABLE transport_personnel
-  ADD CONSTRAINT FK_transport_statut_TO_transport_personnel
+ALTER TABLE transport_personnels
+  ADD CONSTRAINT FK_transport_statut_TO_transport_personnels
     FOREIGN KEY (Id_statut_personnels)
     REFERENCES transport_statut (Id_statut_personnels);
 
-ALTER TABLE transport_personnel
-  ADD CONSTRAINT FK_transport_roles_TO_transport_personnel
+ALTER TABLE transport_personnels
+  ADD CONSTRAINT FK_transport_roles_TO_transport_personnels
     FOREIGN KEY (Id_role)
     REFERENCES transport_roles (Id_role);
 
@@ -89,16 +89,16 @@ ALTER TABLE transport_commentaires
     REFERENCES transport_vehicules (Id_vehicule);
 
 ALTER TABLE transport_commentaires
-  ADD CONSTRAINT FK_transport_personnel_TO_transport_commentaires
+  ADD CONSTRAINT FK_transport_personnels_TO_transport_commentaires
     FOREIGN KEY (Id_personnel)
-    REFERENCES transport_personnel (Id_personnel);
+    REFERENCES transport_personnels (Id_personnel);
 
-ALTER TABLE transport_evaluation
-  ADD CONSTRAINT FK_transport_personnel_TO_transport_evaluation
+ALTER TABLE transport_evaluations
+  ADD CONSTRAINT FK_transport_personnels_TO_transport_evaluations
+    FOREIGN KEY (Id_admin)
+    REFERENCES transport_personnels (Id_personnel);
+
+ALTER TABLE transport_evaluations
+  ADD CONSTRAINT FK_transport_personnels_TO_transport_evaluations1
     FOREIGN KEY (Id_personnel)
-    REFERENCES transport_personnel (Id_personnel);
-
-ALTER TABLE transport_evaluation
-  ADD CONSTRAINT FK_transport_personnel_TO_transport_evaluation1
-    FOREIGN KEY (Id_personnel_1)
-    REFERENCES transport_personnel (Id_personnel);
+    REFERENCES transport_personnels (Id_personnel);

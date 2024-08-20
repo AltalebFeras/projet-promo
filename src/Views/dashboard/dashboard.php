@@ -5,7 +5,7 @@
     <p>Hello from dashboard</p>
     <?php var_dump($_SESSION); ?>
     <p>Bonjour <?php echo $_SESSION['nom'] ?></p>
-        <a href=""></a>
+        <a href="<?= Domain . HOME_URL  ?>deconnexion">deconnexion</a>
     <?php
     if ($_SESSION['role'] === 'admin'):
 

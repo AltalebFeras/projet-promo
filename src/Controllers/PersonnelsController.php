@@ -41,4 +41,32 @@ class PersonnelsController
             header('Location: ' . HOME_URL . '?error=' . urlencode($e->getMessage()));
         }
     }
+
+    public function ajouterEvaluation()
+{
+    try {
+        $personnelRepository = new PersonnelsRepository();
+        
+        // Ensure the variable names are correct
+        $Id_personnel = isset($_POST['Id_personnel']) ? htmlspecialchars($_POST['Id_personnel']) : null;
+        $Id_admin = isset($_POST['Id_admin']) ? htmlspecialchars($_POST['Id_admin']) : null;
+        $texte = isset($_POST['texte']) ? htmlspecialchars($_POST['texte']) : null;
+
+        // Check for null values and handle appropriately
+        if ($Id_personnel && $Id_admin && $texte) {
+            $personnelRepository->ajouterEvaluation($Id_personnel, $Id_admin, $texte);
+            header('Location: ' . HOME_URL . 'dashboard/personnel_detaille?Id_personnel=' . $Id_personnel . '&success=Evaluation ajoutée avec succès.');
+            exit();
+        } else {
+            throw new Exception('Required fields are missing.');
+        }
+        
+    } catch (\Exception $e) {
+        error_log("AjouterEvaluation Error: " . $e->getMessage()); // Log the error for debugging
+        // Redirect to detail page with error message
+        header('Location: ' . HOME_URL . 'dashboard/personnel_detaille?Id_personnel=' . $Id_personnel . '&error=' . urlencode($e->getMessage()));
+        exit();
+    }
+}
+
 }
