@@ -12,7 +12,7 @@ $method = $_SERVER['REQUEST_METHOD'];
 switch ($route) {
     case HOME_URL:
         if ($method === 'POST') {
-            $PersonnelsController->treatmentSignI();
+            $personnelsController->treatmentSignIn();
         } elseif (isset($_SESSION['connecte']) && $_SESSION['connecte']) {
             $homeController->displayDashboard();
         } else {
