@@ -30,7 +30,7 @@ switch ($route) {
   
 
     case HOME_URL . 'deconnexion':
-        // $homeController->signOut();
+        $homeController->deconexion();
         break;
     default:
         $homeController->page404();
