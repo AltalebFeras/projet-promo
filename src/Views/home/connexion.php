@@ -15,11 +15,13 @@
                   <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
 
+
                     <!-- div for messages -->
                     <div class="my-3 successAndErrorMessage"></div>
-
+                    
+                    <? var_dump($_SESSION);?>
                     <p class="title text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign in</p>
-                    <form action="<?= Domain . HOME_URL . 'signIn' ?>" method="POST" id="formConnection" class="mx-1 mx-md-4">
+                    <form action="<?= Domain . HOME_URL  ?>" method="POST" id="formConnexion" class="mx-1 mx-md-4">
                       <div class="d-flex flex-row align-items-center mb-4">
                         <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                         <div data-mdb-input-init class="form-outline d-flex align-items-center gap-2 flex-fill mb-0">
@@ -29,7 +31,7 @@
                       <div class="d-flex flex-row align-items-center mb-4">
                         <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                         <div data-mdb-input-init class="form-outline d-flex align-items-center gap-2 flex-fill mb-0">
-                          <input type="password" id="passwordSignIn" name="password" class="form-control" required placeholder="Enter your password">
+                          <input type="password" id="mdp" name="mdp" class="form-control" required placeholder="Enter your password">
                         </div>
                       </div>
                     

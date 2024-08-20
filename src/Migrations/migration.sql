@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Aug 20, 2024 at 07:34 AM
+-- Generation Time: Aug 20, 2024 at 08:05 AM
 -- Server version: 8.3.0
 -- PHP Version: 8.3.8
 
@@ -30,13 +30,13 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `transport_commentaires`;
 CREATE TABLE IF NOT EXISTS `transport_commentaires` (
   `Id_commentaire` int NOT NULL AUTO_INCREMENT,
-  `Id_personel` int NOT NULL,
+  `Id_personnel` int NOT NULL,
   `Id_vehicule` int NOT NULL,
   `texte` varchar(250) NOT NULL,
   `dtc` datetime NOT NULL,
   PRIMARY KEY (`Id_commentaire`),
   KEY `FK_transport_vehicules_TO_transport_commentaires` (`Id_vehicule`),
-  KEY `FK_transport_personnel_TO_transport_commentaires` (`Id_personel`)
+  KEY `FK_transport_personnel_TO_transport_commentaires` (`Id_personnel`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
@@ -64,30 +64,30 @@ INSERT INTO `transport_etat` (`Id_etat_vehicule`, `nom`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `transport_evaluation`
+-- Table structure for table `transport_evaluations`
 --
 
-DROP TABLE IF EXISTS `transport_evaluation`;
-CREATE TABLE IF NOT EXISTS `transport_evaluation` (
+DROP TABLE IF EXISTS `transport_evaluations`;
+CREATE TABLE IF NOT EXISTS `transport_evaluations` (
   `Id_evaluation` int NOT NULL AUTO_INCREMENT,
   `texte` varchar(250) NOT NULL,
   `dtc` datetime NOT NULL,
-  `Id_personel` int NOT NULL,
-  `Id_personel_1` int NOT NULL,
+  `Id_personnel` int NOT NULL,
+  `Id_personnel_1` int NOT NULL,
   PRIMARY KEY (`Id_evaluation`),
-  KEY `FK_transport_personnel_TO_transport_evaluation` (`Id_personel`),
-  KEY `FK_transport_personnel_TO_transport_evaluation1` (`Id_personel_1`)
+  KEY `FK_transport_personnel_TO_transport_evaluation` (`Id_personnel`),
+  KEY `FK_transport_personnel_TO_transport_evaluation1` (`Id_personnel_1`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `transport_personnel`
+-- Table structure for table `transport_personnels`
 --
 
-DROP TABLE IF EXISTS `transport_personnel`;
-CREATE TABLE IF NOT EXISTS `transport_personnel` (
-  `Id_personel` int NOT NULL AUTO_INCREMENT,
+DROP TABLE IF EXISTS `transport_personnels`;
+CREATE TABLE IF NOT EXISTS `transport_personnels` (
+  `Id_personnel` int NOT NULL AUTO_INCREMENT,
   `nom` varchar(50) NOT NULL,
   `prenom` varchar(50) NOT NULL,
   `date_arrive` date NOT NULL,
@@ -97,16 +97,16 @@ CREATE TABLE IF NOT EXISTS `transport_personnel` (
   `dtc` datetime NOT NULL,
   `Id_statut_personnels` int NOT NULL,
   `Id_role` int NOT NULL,
-  PRIMARY KEY (`Id_personel`),
+  PRIMARY KEY (`Id_personnel`),
   KEY `FK_transport_statut_TO_transport_personnel` (`Id_statut_personnels`),
   KEY `FK_transport_roles_TO_transport_personnel` (`Id_role`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `transport_personnel`
+-- Dumping data for table `transport_personnels`
 --
 
-INSERT INTO `transport_personnel` (`Id_personel`, `nom`, `prenom`, `date_arrive`, `telephone`, `email`, `mdp`, `dtc`, `Id_statut_personnels`, `Id_role`) VALUES
+INSERT INTO `transport_personnels` (`Id_personnel`, `nom`, `prenom`, `date_arrive`, `telephone`, `email`, `mdp`, `dtc`, `Id_statut_personnels`, `Id_role`) VALUES
 (1, 'admin', 'admin', '2024-08-20', 2147483647, 'admin@agtc.fr', '$2y$10$jED32m6q7EvYI0dHze9N8e.yY3sQ7sdSD38km/shhgrO/.znkR.P.', '2024-08-20 07:26:12', 1, 1);
 
 -- --------------------------------------------------------
