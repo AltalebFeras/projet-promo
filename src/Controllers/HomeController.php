@@ -26,13 +26,13 @@ class HomeController
             $Id_role = $personnel['Id_role'];
             $roleName = $personnelsRepository->getRole($Id_role);
 
-            $Id_statut_personnels = $personnel['Id_statut_personnels'];
-            $statut_personnels = $personnelsRepository->getStatutPersonnel($Id_statut_personnels);
+            // $Id_statut_personnels = $personnel['Id_statut_personnels'];
+            // $statut_personnels = $personnelsRepository->getStatutPersonnel($Id_statut_personnels);
 
             $Id_personnel = $personnel['Id_personnel'];
             $evaluation = $personnelsRepository->getLastEvaluationForThisPersonnel($Id_personnel);
 
-            $personnel['statut_personnels'] = $statut_personnels;
+            // $personnel['statut_personnels'] = $statut_personnels;
             $personnel['role_name'] = $roleName;
             $personnel['evaluation'] = $evaluation;  
 

@@ -91,7 +91,7 @@ class PersonnelsRepository
     
         // Fetch role and status
         $personnel['role_name'] = $this->getRole($personnel['Id_role']);
-        $personnel['statut_personnels'] = $this->getStatutPersonnel($personnel['Id_statut_personnels']);
+        // $personnel['statut_personnels'] = $this->getStatutPersonnel($personnel['Id_statut_personnels']);
         $personnel['evaluation'] = $this->getLastEvaluationForThisPersonnel($personnel['Id_personnel']);
     
         return $personnel;

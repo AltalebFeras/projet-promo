@@ -23,7 +23,7 @@
     <button type="submit">Modifier</button>
 </form>
 
-<p>Le personnel est actuellement : <?= htmlspecialchars($personnel['statut_personnels']) ?></p>
+<p>Le personnel est actuellement : </p>
 <p>Déclarer un changement ?</p>
 
 <form action="">
