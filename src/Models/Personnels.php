@@ -6,7 +6,7 @@ use src\Services\Hydratation;
 
 class Personnels
 {
-
+    private $id_personnel;
     private $nom;
     private $prenom;
     private $date_arrive;
@@ -20,6 +20,27 @@ class Personnels
     
     use Hydratation;
 
+     /**
+     * Get the value of id_personnel
+     *
+     * @return  mixed
+     */
+    public function getIdPersonnel()
+    {
+        return $this->id_personnel;
+    }
+
+    /**
+     * Set the value of id_personnel
+     *
+     * @param   mixed  $id_personnel  
+     *
+     */
+    public function setIdPersonnel($id_personnel)
+    {
+        $this->id_personnel = $id_personnel;
+
+    }
     /**
      * Get the value of nom
      *
@@ -217,4 +238,5 @@ class Personnels
         $this->Id_role = $Id_role;
 
     }
+
 }
