@@ -28,10 +28,10 @@
                     </div>
 
                     <?php var_dump($_SESSION); ?>
-                    <div class="d-flex flex-row align-items-center mb-4 my-5">
+                    <div class="d-flex flex-row justify-content-center mb-5 my-5">
                       <img src="\assets\image\logo.png" alt="logo">
                     </div>
-                    <p class="title text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign in</p>
+                    <p class="title text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4"></p>
                     <form action="<?= Domain . HOME_URL  ?>" method="POST" id="formConnexion" class="mx-1 mx-md-4">
                       <div class="d-flex flex-row align-items-center mb-4">
                         <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
