@@ -1,0 +1,30 @@
+.email-connexion {
+
+    background-color: #F2F2F2 !important;
+    box-shadow:  0 0 5px 0 #2A828C;
+}
+
+.mdp-connexion {
+    background-color: #F2F2F2 !important;
+    box-shadow:  0 0 5px 0 #2A828C;
+}
+
+.connexion{
+
+    background-color: #68A689 !important;
+    box-shadow: 0 0 0px 1px #2A828C;
+    border-radius: 5px;
+}
+
+
+/* .logo{
+    background-image: url( '/assets/image/logo.png' );
+    background-repeat: no-repeat;
+    height: 200px;
+
+} */
+
+.connexion:hover{
+    background-color: #2A828C !important;
+    box-shadow: 0 0 0 1px  #68A689;
+}
