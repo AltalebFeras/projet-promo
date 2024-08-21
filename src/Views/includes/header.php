@@ -17,8 +17,6 @@
   <link rel="stylesheet" href="<?= Domain . HOME_URL . 'assets/style/404.css' ?>">
   <link rel="stylesheet" href="<?= Domain . HOME_URL . 'assets/style/admin.css' ?>">
   <link rel="stylesheet" href="<?= Domain . HOME_URL . 'assets/style/connexion.css' ?>">
-  <link rel="stylesheet" href="<?= Domain . HOME_URL . 'assets/style/404.css' ?>">
-  <link rel="stylesheet" href="<?= Domain . HOME_URL . 'assets/style/admin.css' ?>">
 
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
