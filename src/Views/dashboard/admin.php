@@ -1,6 +1,19 @@
 <?php   ?>
 
-<p>page admin</p>
+
+
+
+
+<p class="para">page admin</p>
+
+<nav class="d-flex">
+   <img class="logo-admin" src="<?= Domain . HOME_URL . 'assets/image/Logo.png'?>" alt="logotype de l'entreprise représentant un tramway et un bus en mouvement"/>
+    
+
+</nav>
+
+
+
 <a href="<?= Domain . HOME_URL  ?>dashboard/ajouter_personnel">Ajouter_personnel</a>
 
 <div>
