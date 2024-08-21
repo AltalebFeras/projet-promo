@@ -16,7 +16,6 @@
   <link rel="stylesheet" href="<?= Domain . HOME_URL . 'assets/style/global.css' ?>">
   <link rel="stylesheet" href="<?= Domain . HOME_URL . 'assets/style/404.css' ?>">
   <link rel="stylesheet" href="<?= Domain . HOME_URL . 'assets/style/connexion.css' ?>">
-  <link rel="stylesheet" href="<?= Domain . HOME_URL . 'assets/style/404.css' ?>">
   <link rel="stylesheet" href="<?= Domain . HOME_URL . 'assets/style/admin.css' ?>">
 
 
