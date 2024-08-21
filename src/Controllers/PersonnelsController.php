@@ -2,6 +2,7 @@
 
 namespace src\Controllers;
 
+use Exception;
 use src\Repositories\PersonnelsRepository;
 
 class PersonnelsController
@@ -61,7 +62,7 @@ class PersonnelsController
             throw new Exception('Required fields are missing.');
         }
         
-    } catch (\Exception $e) {
+    } catch (Exception $e) {
         error_log("AjouterEvaluation Error: " . $e->getMessage()); // Log the error for debugging
         // Redirect to detail page with error message
         header('Location: ' . HOME_URL . 'dashboard/personnel_detaille?Id_personnel=' . $Id_personnel . '&error=' . urlencode($e->getMessage()));
