@@ -1,60 +1,100 @@
 <?php include_once __DIR__ . '/../includes/header.php'; ?>
 
+<div class="container mt-5">
+    <h2>Détails du Personnel</h2>
 
-<p>page personnel detaille</p>
+    <div class="alert-container">
+        <?php if (isset($_GET['error'])): ?>
+            <div class="alert alert-danger"><?php echo htmlspecialchars($_GET['error']); ?></div>
+        <?php endif; ?>
+        <?php if (isset($_GET['success'])): ?>
+            <div class="alert alert-success"><?php echo htmlspecialchars($_GET['success']); ?></div>
+        <?php endif; ?>
+    </div>
 
+    <form method="post" action="<?= HOME_URL . 'dashboard/personnel_detaille?Id_personnel=' . $personnel['Id_personnel'] ?>" class="mb-4">
+        <div class="mb-3">
+            <label for="nom" class="form-label">Nom</label>
+            <input type="text" id="nom" name="nom" class="form-control" value="<?= htmlspecialchars($personnel['nom']) ?>">
+        </div>
 
-<h1>Personnel Details</h1>
+        <div class="mb-3">
+            <label for="prenom" class="form-label">Prénom</label>
+            <input type="text" id="prenom" name="prenom" class="form-control" value="<?= htmlspecialchars($personnel['prenom']) ?>">
+        </div>
 
-<form action="" method="post">
-    <label for="nom">Nom</label>
-    <input type="text" id="nom" name="nom" value="<?= htmlspecialchars($personnel['nom']) ?>"><br>
-    <label for="prenom">Prénom</label>
-    <input type="text" id="prenom" name="prenom" value="<?= htmlspecialchars($personnel['prenom']) ?>"><br>
+        <div class="mb-3">
+            <label for="date_arrive" class="form-label">Date d'arrivée</label>
+            <input type="date" id="date_arrive" name="date_arrive" class="form-control" value="<?= htmlspecialchars($personnel['date_arrive']) ?>">
+        </div>
 
-    <label for="date_arrive">Date d'arrivée</label>
-    <input type="date" id="date_arrive" name="date_arrive" value="<?= htmlspecialchars($personnel['date_arrive']) ?>"><br>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" id="email" name="email" class="form-control" value="<?= htmlspecialchars($personnel['email']) ?>">
+        </div>
 
-    <label for="email">Email</label>
-    <input type="email" id="email" name="email" value="<?= htmlspecialchars($personnel['email']) ?>"><br>
-    <label for="telephone">Téléphone</label>
-    <input type="text" id="telephone" name="telephone" value="<?= htmlspecialchars($personnel['telephone']) ?>"><br>
-    
-    <button type="submit">Modifier</button>
-</form>
+        <div class="mb-3">
+            <label for="telephone" class="form-label">Téléphone</label>
+            <input type="text" id="telephone" name="telephone" class="form-control" value="<?= htmlspecialchars($personnel['telephone']) ?>">
+        </div>
 
-<p>Le personnel est actuellement : </p>
-<p>Déclarer un changement ?</p>
+        <input type="hidden" name="action" value="edit_personnel" />
+        <button type="submit" class="btn btn-warning">Modifier</button>
+    </form>
 
-<form action="">
-    <select id="statut" name="statut">
-        <option value="">Selectionnez un statut</option>
-        <?php foreach ($statuts as $statut) : ?>
-            <option value="<?= $statut['Id_statut_personnels'] ?>"><?= $statut['statut_personnels'] ?>
-        </option>
-        <?php endforeach; ?>
-    </select>
+    <p><strong>Statut Actuel:</strong> <?= $statuts_personnel ? htmlspecialchars($statuts_personnel['status_name']) : 'Aucun statut trouvé' ?></p>
 
-    <button onclick="changeStatut(<?= $personnel['Id_personnel'] ?>)">Changer le statut</button>
-</form>
+    <h4 class="mt-4">Déclarer un changement</h4>
+    <form method="post" action="<?= HOME_URL . 'dashboard/personnel_detaille?Id_personnel=' . $personnel['Id_personnel'] ?>" class="mb-4">
+        <div class="mb-3">
+            <label for="statut" class="form-label">Sélectionnez un statut</label>
+            <select id="statut" name="Id_statut" class="form-select">
+                <option value="">Choisir...</option>
+                <?php foreach ($statuts as $statut) : ?>
+                    <option value="<?= $statut['Id_statut'] ?>"><?= htmlspecialchars($statut['nom']) ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
 
+        <div id="divForStatusDates" class="mb-3">
+            <label for="date_debut" class="form-label">Date Début Statut</label>
+            <input type="date" id="date_debut" name="date_debut" class="form-control"><br>
 
-<p>Ajouter une évaluation :</p>
+            <label for="date_fin" class="form-label">Date Fin Statut</label>
+            <input type="date" id="date_fin" name="date_fin" class="form-control">
+        </div>
 
+        <input type="hidden" name="action" value="changer_status_personnel" />
+        <input type="hidden" name="Id_personnel" value="<?= $personnel['Id_personnel'] ?>" />
+        <button type="submit" class="btn btn-info">Déclarer</button>
+    </form>
 
-<form method="post" action="<?= HOME_URL . 'dashboard/personnel_detaille?Id_personnel=' . $personnel['Id_personnel'] ?>">
-    <input type="hidden" name="Id_admin" value="<?= $_SESSION['Id_personnel'] ?>" />
-    <input type="hidden" name="Id_personnel" value="<?= $_GET['Id_personnel'] ?>" />
-    <input type="hidden" name="action" value="ajouter_evaluation" /> <!-- Hidden action field -->
-    <label for="texte">Ajouter une évaluation:</label>
-    <input type="text" name="texte" id="texte" />
-    <button type="submit">Soumettre</button>
-</form>
-<p><strong>Last Evaluation:</strong> <?= isset($personnel['evaluation']) ? htmlspecialchars($personnel['evaluation']) : 'No evaluation available' ?></p>
+    <?php if ($personnel['role_name'] != 'admin') : ?>
+        <h4 class="mt-4">Ajouter une évaluation</h4>
+        <form method="post" action="<?= HOME_URL . 'dashboard/personnel_detaille?Id_personnel=' . $personnel['Id_personnel'] ?>" class="mb-4">
+            <input type="hidden" name="Id_admin" value="<?= $_SESSION['Id_personnel'] ?>" />
+            <input type="hidden" name="Id_personnel" value="<?= $_GET['Id_personnel'] ?>" />
+            <input type="hidden" name="action" value="ajouter_evaluation" />
 
-<p>Effacer ce personnel ?</p>
-<form action="">
-    <button onclick="deletePersonnel(<?= $personnel['Id_personnel'] ?>)"><i class="bi bi-trash"></i></button>
-</form>
+            <div class="mb-3">
+                <label for="texte" class="form-label">Evaluation</label>
+                <input type="text" name="texte" id="texte" class="form-control" />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Soumettre</button>
+        </form>
+
+        <p><strong>Dernière évaluation:</strong> <?= isset($personnel['evaluation']) ? htmlspecialchars($personnel['evaluation']) : 'Pas d\'évaluation disponible' ?></p>
+    <?php else : ?>
+        <p class="text-danger">Vous ne pouvez pas évaluer ce personnel !</p>
+    <?php endif; ?>
+
+    <h4 class="mt-4">Effacer ce personnel</h4>
+    <form method="post" action="<?= HOME_URL . 'dashboard/personnel_detaille?Id_personnel=' . $personnel['Id_personnel'] ?>">
+        <input type="hidden" name="action" value="suprimmer_personnel" />
+        <input type="hidden" name="Id_personnel" value="<?= $personnel['Id_personnel'] ?>" />
+        <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i> Effacer</button>
+    </form>
+</div>
 
 <?php include_once __DIR__ . '/../includes/footer.php'; ?>
