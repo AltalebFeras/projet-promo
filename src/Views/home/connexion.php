@@ -28,23 +28,26 @@
                     </div>
 
                     <?php var_dump($_SESSION); ?>
+                    <div class="d-flex flex-row align-items-center mb-4 my-5">
+                      <img src="\assets\image\logo.png" alt="logo">
+                    </div>
                     <p class="title text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign in</p>
                     <form action="<?= Domain . HOME_URL  ?>" method="POST" id="formConnexion" class="mx-1 mx-md-4">
                       <div class="d-flex flex-row align-items-center mb-4">
                         <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                         <div data-mdb-input-init class="form-outline d-flex align-items-center gap-2 flex-fill mb-0">
-                          <input type="email" id="emailSignIn" name="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter your email" required autocomplete="email">
+                          <input type="email" id="emailSignIn" name="email" class="form-control email-connexion" aria-describedby="emailHelp" placeholder="Enter your email" required autocomplete="email">
                         </div>
                       </div>
                       <div class="d-flex flex-row align-items-center mb-4">
                         <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                         <div data-mdb-input-init class="form-outline d-flex align-items-center gap-2 flex-fill mb-0">
-                          <input type="password" id="mdp" name="mdp" class="form-control" required placeholder="Enter your password">
+                          <input type="password" id="mdp" name="mdp" class="form-control mdp-connexion" required placeholder="Enter your password">
                         </div>
                       </div>
 
                       <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                        <button id="submissionButtonSignIn" type="submit" class="btn btn-primary btn-lg">Sign in</button>
+                        <button id="submissionButtonSignIn" type="submit" class="btn btn-primary btn-lg connexion">Connexion</button>
                       </div>
                     </form>
 
