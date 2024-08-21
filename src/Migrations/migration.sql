@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Aug 20, 2024 at 12:41 PM
+-- Generation Time: Aug 21, 2024 at 01:25 PM
 -- Server version: 8.3.0
 -- PHP Version: 8.3.8
 
@@ -35,8 +35,9 @@ CREATE TABLE IF NOT EXISTS `transport_commentaires` (
   `texte` varchar(250) NOT NULL,
   `dtc` datetime NOT NULL,
   PRIMARY KEY (`Id_commentaire`),
+  UNIQUE KEY `UQ_Id_commentaire` (`Id_commentaire`),
   KEY `FK_transport_vehicules_TO_transport_commentaires` (`Id_vehicule`),
-  KEY `FK_transport_personnel_TO_transport_commentaires` (`Id_personnel`)
+  KEY `FK_transport_personnels_TO_transport_commentaires` (`Id_personnel`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
@@ -49,7 +50,8 @@ DROP TABLE IF EXISTS `transport_etat`;
 CREATE TABLE IF NOT EXISTS `transport_etat` (
   `Id_etat_vehicule` int NOT NULL AUTO_INCREMENT,
   `nom` varchar(150) NOT NULL,
-  PRIMARY KEY (`Id_etat_vehicule`)
+  PRIMARY KEY (`Id_etat_vehicule`),
+  UNIQUE KEY `UQ_Id_etat_vehicule` (`Id_etat_vehicule`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -75,16 +77,32 @@ CREATE TABLE IF NOT EXISTS `transport_evaluations` (
   `Id_admin` int NOT NULL,
   `Id_personnel` int NOT NULL,
   PRIMARY KEY (`Id_evaluation`),
-  KEY `FK_transport_personnel_TO_transport_evaluation` (`Id_admin`),
-  KEY `FK_transport_personnel_TO_transport_evaluation1` (`Id_personnel`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `UQ_Id_evaluation` (`Id_evaluation`),
+  KEY `FK_transport_personnels_TO_transport_evaluations` (`Id_admin`),
+  KEY `FK_transport_personnels_TO_transport_evaluations1` (`Id_personnel`)
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `transport_evaluations`
 --
 
 INSERT INTO `transport_evaluations` (`Id_evaluation`, `texte`, `dtc`, `Id_admin`, `Id_personnel`) VALUES
-(1, 'BLBLBALBAOBLA', '2024-08-20 12:38:40', 1, 2);
+(1, 'BLBLBALBAOBLA', '2024-08-20 12:38:40', 1, 2),
+(2, 'ZERZER', '2024-08-20 13:01:13', 1, 2),
+(3, 'dfgererQSDQD', '2024-08-20 16:37:32', 1, 1),
+(4, 'SDFER', '2024-08-20 16:37:45', 1, 1),
+(5, 'ezesdfsdfzerzaerae', '2024-08-20 16:42:12', 1, 2),
+(6, 'fdssdf', '2024-08-20 22:19:28', 1, 1),
+(7, 'sdfsdf', '2024-08-20 22:19:38', 1, 1),
+(8, 'ezerzer', '2024-08-20 22:19:43', 1, 1),
+(9, 'dfgdfg', '2024-08-20 22:23:47', 1, 1),
+(10, 'qsdfqs', '2024-08-20 22:24:39', 1, 1),
+(11, 'qsdfqsdsdf', '2024-08-20 22:24:43', 1, 1),
+(12, 'qsdfqsdsdf', '2024-08-20 22:24:44', 1, 1),
+(13, 'dfgerer', '2024-08-20 22:27:26', 1, 1),
+(14, 'dddd', '2024-08-20 22:27:58', 1, 1),
+(15, 'dsd', '2024-08-20 22:30:12', 1, 1),
+(16, 'qsdfqsd', '2024-08-21 13:42:05', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -102,21 +120,22 @@ CREATE TABLE IF NOT EXISTS `transport_personnels` (
   `email` varchar(150) NOT NULL,
   `mdp` varchar(200) NOT NULL,
   `dtc` datetime NOT NULL,
-  `Id_statut_personnels` int NOT NULL,
   `Id_role` int NOT NULL,
   PRIMARY KEY (`Id_personnel`),
-  KEY `FK_transport_statut_TO_transport_personnel` (`Id_statut_personnels`),
-  KEY `FK_transport_roles_TO_transport_personnel` (`Id_role`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `UQ_Id_personnel` (`Id_personnel`),
+  UNIQUE KEY `UQ_email` (`email`),
+  KEY `FK_transport_roles_TO_transport_personnels` (`Id_role`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `transport_personnels`
 --
 
-INSERT INTO `transport_personnels` (`Id_personnel`, `nom`, `prenom`, `date_arrive`, `telephone`, `email`, `mdp`, `dtc`, `Id_statut_personnels`, `Id_role`) VALUES
-(1, 'vfdc', 'feras', '2024-08-20', 2147483647, 'admin@agtc.fr', '$2y$10$jED32m6q7EvYI0dHze9N8e.yY3sQ7sdSD38km/shhgrO/.znkR.P.', '2024-08-20 07:26:12', 1, 1),
-(2, 'SS', 'sam', '2024-08-20', 2147483647, 'conducteur@agtc.fr', '$2y$10$X6DmEq47ZGn37uxb.3YPne2DoHQnDv0zO1Sa973zXcuFSyC7LkZZa', '2024-08-20 11:22:37', 1, 3),
-(3, 'EF', 'joseph', '2024-08-20', 2147483647, 'mecanicien@agtc.fr', '$2y$10$fK/3c0A5eLbZa3AImV6gUeUi4RSF/xwBiCaYJcz0n4BC90XdQUADO', '2024-08-20 11:23:46', 1, 2);
+INSERT INTO `transport_personnels` (`Id_personnel`, `nom`, `prenom`, `date_arrive`, `telephone`, `email`, `mdp`, `dtc`, `Id_role`) VALUES
+(1, 'vfdc', 'feras', '2024-08-20', 2147483647, 'admin@agtc.fr', '$2y$10$jED32m6q7EvYI0dHze9N8e.yY3sQ7sdSD38km/shhgrO/.znkR.P.', '2024-08-20 07:26:12', 1),
+(2, 'SS', 'sam', '2024-08-20', 2147483647, 'conducteur@agtc.fr', '$2y$10$X6DmEq47ZGn37uxb.3YPne2DoHQnDv0zO1Sa973zXcuFSyC7LkZZa', '2024-08-20 11:22:37', 3),
+(3, 'EF', 'joseph', '2024-08-20', 2147483647, 'mecanicien@agtc.fr', '$2y$10$fK/3c0A5eLbZa3AImV6gUeUi4RSF/xwBiCaYJcz0n4BC90XdQUADO', '2024-08-20 11:23:46', 2),
+(4, 'ADMIN2', 'ADMIN2', '2024-08-21', 2147483647, 'admin2@agtc.fr', 'admin2@agtc.fr', '2024-08-20 14:40:12', 1);
 
 -- --------------------------------------------------------
 
@@ -128,7 +147,8 @@ DROP TABLE IF EXISTS `transport_roles`;
 CREATE TABLE IF NOT EXISTS `transport_roles` (
   `Id_role` int NOT NULL AUTO_INCREMENT,
   `nom` varchar(150) NOT NULL,
-  PRIMARY KEY (`Id_role`)
+  PRIMARY KEY (`Id_role`),
+  UNIQUE KEY `UQ_Id_role` (`Id_role`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -148,21 +168,39 @@ INSERT INTO `transport_roles` (`Id_role`, `nom`) VALUES
 
 DROP TABLE IF EXISTS `transport_statut`;
 CREATE TABLE IF NOT EXISTS `transport_statut` (
-  `Id_statut_personnels` int NOT NULL AUTO_INCREMENT,
+  `Id_statut` int NOT NULL AUTO_INCREMENT,
   `nom` varchar(150) NOT NULL,
-  `date_debut` date DEFAULT NULL,
-  `date_fin` date DEFAULT NULL,
-  PRIMARY KEY (`Id_statut_personnels`)
+  PRIMARY KEY (`Id_statut`),
+  UNIQUE KEY `UQ_Id_status` (`Id_statut`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `transport_statut`
 --
 
-INSERT INTO `transport_statut` (`Id_statut_personnels`, `nom`, `date_debut`, `date_fin`) VALUES
-(1, 'present', NULL, NULL),
-(2, 'vacances', NULL, NULL),
-(3, 'maladie', NULL, NULL);
+INSERT INTO `transport_statut` (`Id_statut`, `nom`) VALUES
+(1, 'present'),
+(2, 'vacances'),
+(3, 'maladie');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transport_statut_personnel`
+--
+
+DROP TABLE IF EXISTS `transport_statut_personnel`;
+CREATE TABLE IF NOT EXISTS `transport_statut_personnel` (
+  `Id_statut_personnels` int NOT NULL AUTO_INCREMENT,
+  `Id_statut` int NOT NULL,
+  `Id_personnel` int NOT NULL,
+  `date_debut` date DEFAULT NULL,
+  `date_fin` date DEFAULT NULL,
+  PRIMARY KEY (`Id_statut_personnels`),
+  UNIQUE KEY `UQ_Id_statut_personnels` (`Id_statut_personnels`),
+  KEY `FK_transport_statut_TO_transport_statut_personnel` (`Id_statut`),
+  KEY `FK_transport_personnels_TO_transport_statut_personnel` (`Id_personnel`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -179,6 +217,7 @@ CREATE TABLE IF NOT EXISTS `transport_vehicules` (
   `km` int NOT NULL,
   `Id_etat_vehicule` int NOT NULL,
   PRIMARY KEY (`Id_vehicule`),
+  UNIQUE KEY `UQ_Id_vehicule` (`Id_vehicule`),
   KEY `FK_transport_etat_TO_transport_vehicules` (`Id_etat_vehicule`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 COMMIT;
