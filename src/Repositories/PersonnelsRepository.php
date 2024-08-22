@@ -25,7 +25,7 @@ class PersonnelsRepository
         try {
 
             $query = $this->DB->prepare('SELECT * FROM ' . PREFIXE . 'personnels WHERE email = :email');
-            $query->execute([ 'email' => $email ]);
+            $query->execute(['email' => $email]);
             $user = $query->fetch(PDO::FETCH_ASSOC);
 
             if (!$user) {
@@ -36,8 +36,8 @@ class PersonnelsRepository
             if (!password_verify($mdp, $user['mdp'])) {
                 throw new Exception('Incorrect  mdp.');
             }
-            return $user ;
-        }catch (PDOException $e) {
+            return $user;
+        } catch (PDOException $e) {
             // Log detailed error message
             error_log('Database Error: ' . $e->getMessage());
             if ($e->getCode() == 23000) { // Duplicate entry error code
@@ -47,7 +47,7 @@ class PersonnelsRepository
             }
         }
     }
-    
+
     public function getRole($Id_role)
     {
         $query = $this->DB->prepare('SELECT * FROM ' . PREFIXE . 'roles WHERE Id_role = :Id_role');
@@ -55,7 +55,7 @@ class PersonnelsRepository
         $role = $query->fetch(PDO::FETCH_ASSOC);
         // var_dump( $role['nom']);
         // die();
-        return $role['nom']; 
+        return $role['nom'];
     }
     public function getAllPersonnelsDetailed()
     {
@@ -70,7 +70,6 @@ class PersonnelsRepository
                     p.email, 
                     p.dtc, 
                     r.nom AS role_name, 
-                    s.nom AS status_name, 
                     (SELECT texte 
                      FROM ' . PREFIXE . 'evaluations 
                      WHERE Id_personnel = p.Id_personnel 
@@ -78,8 +77,6 @@ class PersonnelsRepository
                      LIMIT 1) AS last_evaluation
                 FROM ' . PREFIXE . 'personnels p
                 JOIN ' . PREFIXE . 'roles r ON p.Id_role = r.Id_role
-                LEFT JOIN ' . PREFIXE . 'statut_personnel sp ON p.Id_personnel = sp.Id_personnel 
-                LEFT JOIN ' . PREFIXE . 'statut s ON sp.Id_statut = s.Id_statut AND sp.date_fin IS NULL
                 ORDER BY p.dtc DESC
             ');
 
@@ -90,17 +87,40 @@ class PersonnelsRepository
             throw new Exception('An error occurred while fetching detailed personnel information.');
         }
     }
-    public function getAllPersonnels(){
-    
-        $query = $this->DB->query('SELECT * FROM '. PREFIXE.'personnels');
-        return $query->fetchAll(PDO::FETCH_ASSOC);
+    public function getAllPersonnels()
+    {
 
-    }
-    public function getAllStatus(){
-        $query = $this->DB->query('SELECT * FROM '. PREFIXE.'statut');
+        $query = $this->DB->query('SELECT * FROM ' . PREFIXE . 'personnels');
         return $query->fetchAll(PDO::FETCH_ASSOC);
-        
     }
+    public function getAllStatus()
+    {
+        $query = $this->DB->query('SELECT * FROM ' . PREFIXE . 'statut');
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function getTheLastStatusForEachPersonnel($Id_personnel)
+    {
+        try {
+            $query = $this->DB->prepare('
+                SELECT s.nom AS status_name
+                FROM ' . PREFIXE . 'statut_personnel sp
+                JOIN ' . PREFIXE . 'statut s ON sp.Id_statut = s.Id_statut
+                WHERE sp.Id_personnel = :Id_personnel
+                ORDER BY sp.dtc DESC, sp.date_debut DESC
+                LIMIT 1
+            ');
+            $query->bindParam(':Id_personnel', $Id_personnel, PDO::PARAM_INT);
+            $query->execute();
+            
+            $status = $query->fetch(PDO::FETCH_ASSOC);
+            return $status;
+        } catch (PDOException $e) {
+            error_log('Database Error: ' . $e->getMessage());
+            throw new Exception('An error occurred while fetching the personnel status.');
+        }
+    }
+    
+
     public function getStatusOfThisPersonnel($Id_personnel)
     {
         try {
@@ -110,13 +130,13 @@ class PersonnelsRepository
                 FROM ' . PREFIXE . 'statut_personnel sp 
                 JOIN ' . PREFIXE . 'statut s ON sp.Id_statut = s.Id_statut 
                 WHERE sp.Id_personnel = :Id_personnel 
-                ORDER BY sp.date_debut DESC 
+                ORDER BY sp.dtc DESC, sp.date_debut DESC
                 LIMIT 1
             ');
-    
+
             $query->execute(['Id_personnel' => $Id_personnel]);
             $statuts_personnel = $query->fetch(PDO::FETCH_ASSOC);
-    
+
             // Check if a status was found
             if ($statuts_personnel) {
                 return $statuts_personnel;
@@ -128,18 +148,18 @@ class PersonnelsRepository
             throw new Exception('An error occurred while fetching the personnel status.');
         }
     }
-    
- 
+
+
     public function getLastEvaluationForThisPersonnel($Id_personnel)
     {
-        $query = $this->DB->prepare('SELECT * FROM '. PREFIXE .'evaluations WHERE Id_personnel = :Id_personnel ORDER BY dtc DESC LIMIT 1');
+        $query = $this->DB->prepare('SELECT * FROM ' . PREFIXE . 'evaluations WHERE Id_personnel = :Id_personnel ORDER BY dtc DESC LIMIT 1');
         $query->execute(['Id_personnel' => $Id_personnel]);
         $evaluation = $query->fetch(PDO::FETCH_ASSOC);
-    
+
         if ($evaluation !== false) {
-            return $evaluation['texte']; 
+            return $evaluation['texte'];
         } else {
-            return null; 
+            return null;
         }
     }
     public function getPersonnelById($Id_personnel)
@@ -147,25 +167,26 @@ class PersonnelsRepository
         $query = $this->DB->prepare('SELECT * FROM ' . PREFIXE . 'personnels WHERE Id_personnel = :Id_personnel');
         $query->execute(['Id_personnel' => $Id_personnel]);
         $personnel = $query->fetch(PDO::FETCH_ASSOC);
-    
+
         // Fetch role and status
         $personnel['role_name'] = $this->getRole($personnel['Id_role']);
         $personnel['evaluation'] = $this->getLastEvaluationForThisPersonnel($personnel['Id_personnel']);
-    
+
         return $personnel;
     }
-    public function ajouterEvaluation($Id_peronnel, $Id_admin, $texte){
-        $query = $this->DB->prepare('INSERT INTO '. PREFIXE.'evaluations (Id_personnel, Id_admin, texte, dtc) VALUES (:Id_personnel, :Id_admin, :texte, NOW())');
-        $query->execute(['Id_personnel' => $Id_peronnel, 'Id_admin' => $Id_admin, 'texte' => $texte]);
+    public function ajouterEvaluation($Id_personnel, $Id_admin, $texte)
+    {
+        $query = $this->DB->prepare('INSERT INTO ' . PREFIXE . 'evaluations (Id_personnel, Id_admin, texte, dtc) VALUES (:Id_personnel, :Id_admin, :texte, NOW())');
+        $query->execute(['Id_personnel' => $Id_personnel, 'Id_admin' => $Id_admin, 'texte' => $texte]);
         return $this->DB->lastInsertId();
     }
     public function emailExists($email)
     {
         try {
-            $query = $this->DB->prepare('SELECT COUNT(*) FROM '. PREFIXE.'personnels WHERE email = :email');
+            $query = $this->DB->prepare('SELECT COUNT(*) FROM ' . PREFIXE . 'personnels WHERE email = :email');
             $query->execute(['email' => $email]);
             $count = $query->fetchColumn();
-            
+
             return $count > 0; // Returns true if email exists, false otherwise
         } catch (PDOException $e) {
             error_log("Database Error: " . $e->getMessage());
@@ -177,7 +198,7 @@ class PersonnelsRepository
     {
         try {
             $query = $this->DB->prepare('
-                INSERT INTO '. PREFIXE.'personnels (nom, prenom, date_arrive, telephone, email, mdp, dtc, Id_role) 
+                INSERT INTO ' . PREFIXE . 'personnels (nom, prenom, date_arrive, telephone, email, mdp, dtc, Id_role) 
                 VALUES (:nom, :prenom, :date_arrive, :telephone, :email, :mdp, NOW(), :Id_role)
             ');
 
@@ -194,7 +215,7 @@ class PersonnelsRepository
 
             // Insert personnel status
             $statusQuery = $this->DB->prepare('
-                INSERT INTO '. PREFIXE.'statut_personnel (Id_statut, Id_personnel, date_debut) 
+                INSERT INTO ' . PREFIXE . 'statut_personnel (Id_statut, Id_personnel, date_debut) 
                 VALUES (:Id_statut, :Id_personnel, NOW())
             ');
 
@@ -207,9 +228,10 @@ class PersonnelsRepository
             throw new Exception('An error occurred while adding the personnel.');
         }
     }
-    public function editPersonnel($Id_personnel, $nom, $prenom, $date_arrive, $telephone, $email){
+    public function editPersonnel($Id_personnel, $nom, $prenom, $date_arrive, $telephone, $email)
+    {
         try {
-            $query = $this->DB->prepare('UPDATE '. PREFIXE.'personnels SET nom = :nom, prenom = :prenom, date_arrive = :date_arrive, telephone = :telephone, email = :email WHERE Id_personnel = :Id_personnel');
+            $query = $this->DB->prepare('UPDATE ' . PREFIXE . 'personnels SET nom = :nom, prenom = :prenom, date_arrive = :date_arrive, telephone = :telephone, email = :email WHERE Id_personnel = :Id_personnel');
             $query->execute([
                 'nom' => $nom,
                 'prenom' => $prenom,
@@ -219,29 +241,30 @@ class PersonnelsRepository
                 'Id_personnel' => $Id_personnel
             ]);
         } catch (PDOException $e) {
-            error_log("Database Error: ". $e->getMessage());
+            error_log("Database Error: " . $e->getMessage());
             throw new Exception('An error occurred while editing the personnel.');
         }
     }
-    public function supprimerPersonnel($Id_personnel){
+    public function supprimerPersonnel($Id_personnel)
+    {
 
         try {
-            $query = $this->DB->prepare('DELETE FROM '. PREFIXE.'personnels WHERE Id_personnel = :Id_personnel');
+            $query = $this->DB->prepare('DELETE FROM ' . PREFIXE . 'personnels WHERE Id_personnel = :Id_personnel');
             $query->execute(['Id_personnel' => $Id_personnel]);
-            $query = $this->DB->prepare('DELETE FROM '. PREFIXE.'statut_personnel WHERE Id_personnel = :Id_personnel');
+            $query = $this->DB->prepare('DELETE FROM ' . PREFIXE . 'statut_personnel WHERE Id_personnel = :Id_personnel');
             $query->execute(['Id_personnel' => $Id_personnel]);
-            $query = $this->DB->prepare('DELETE FROM '. PREFIXE.'evaluations WHERE Id_personnel = :Id_personnel');
+            $query = $this->DB->prepare('DELETE FROM ' . PREFIXE . 'evaluations WHERE Id_personnel = :Id_personnel');
             $query->execute(['Id_personnel' => $Id_personnel]);
-
         } catch (PDOException $e) {
-            error_log("Database Error: ". $e->getMessage());
+            error_log("Database Error: " . $e->getMessage());
             throw new Exception('An error occurred while deleting the personnel.');
         }
     }
-    public function ajouterStatusPersonnel($Id_personnel, $Id_statut, $date_debut, $date_fin){
-    
+    public function ajouterStatusPersonnel($Id_personnel, $Id_statut, $date_debut, $date_fin)
+    {
+
         try {
-            $query = $this->DB->prepare('INSERT INTO '. PREFIXE.'statut_personnel (Id_statut, Id_personnel, date_debut, date_fin, dtc) VALUES (:Id_statut, :Id_personnel, :date_debut, :date_fin, NOW())');
+            $query = $this->DB->prepare('INSERT INTO ' . PREFIXE . 'statut_personnel (Id_statut, Id_personnel, date_debut, date_fin, dtc) VALUES (:Id_statut, :Id_personnel, :date_debut, :date_fin, NOW())');
             $query->execute([
                 'Id_statut' => $Id_statut,
                 'Id_personnel' => $Id_personnel,
@@ -249,7 +272,7 @@ class PersonnelsRepository
                 'date_fin' => $date_fin
             ]);
         } catch (PDOException $e) {
-            error_log("Database Error: ". $e->getMessage());
+            error_log("Database Error: " . $e->getMessage());
             throw new Exception('An error occurred while adding the personnel status.');
         }
     }
