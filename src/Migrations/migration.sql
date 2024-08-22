@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `transport_commentaires` (
   UNIQUE KEY `UQ_Id_commentaire` (`Id_commentaire`),
   KEY `FK_transport_vehicules_TO_transport_commentaires` (`Id_vehicule`),
   KEY `FK_transport_personnels_TO_transport_commentaires` (`Id_personnel`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `transport_etat` (
   `nom` varchar(150) NOT NULL,
   PRIMARY KEY (`Id_etat_vehicule`),
   UNIQUE KEY `UQ_Id_etat_vehicule` (`Id_etat_vehicule`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `transport_etat`
@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `transport_evaluations` (
   UNIQUE KEY `UQ_Id_evaluation` (`Id_evaluation`),
   KEY `FK_transport_personnels_TO_transport_evaluations` (`Id_admin`),
   KEY `FK_transport_personnels_TO_transport_evaluations1` (`Id_personnel`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `transport_evaluations`
@@ -111,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `transport_personnels` (
   UNIQUE KEY `UQ_Id_personnel` (`Id_personnel`),
   UNIQUE KEY `UQ_email` (`email`),
   KEY `FK_transport_roles_TO_transport_personnels` (`Id_role`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `transport_personnels`
@@ -134,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `transport_roles` (
   `nom` varchar(150) NOT NULL,
   PRIMARY KEY (`Id_role`),
   UNIQUE KEY `UQ_Id_role` (`Id_role`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `transport_roles`
@@ -157,7 +157,7 @@ CREATE TABLE IF NOT EXISTS `transport_statut` (
   `nom` varchar(150) NOT NULL,
   PRIMARY KEY (`Id_statut`),
   UNIQUE KEY `UQ_Id_status` (`Id_statut`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `transport_statut`
@@ -186,7 +186,7 @@ CREATE TABLE IF NOT EXISTS `transport_statut_personnel` (
   UNIQUE KEY `UQ_Id_statut_personnels` (`Id_statut_personnels`),
   KEY `FK_transport_statut_TO_transport_statut_personnel` (`Id_statut`),
   KEY `FK_transport_personnels_TO_transport_statut_personnel` (`Id_personnel`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `transport_statut_personnel`
@@ -212,7 +212,7 @@ CREATE TABLE IF NOT EXISTS `transport_vehicules` (
   PRIMARY KEY (`Id_vehicule`),
   UNIQUE KEY `UQ_Id_vehicule` (`Id_vehicule`),
   KEY `FK_transport_etat_TO_transport_vehicules` (`Id_etat_vehicule`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
