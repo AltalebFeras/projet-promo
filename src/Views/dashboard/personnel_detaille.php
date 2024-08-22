@@ -1,7 +1,7 @@
 <?php include_once __DIR__ . '/../includes/header.php'; ?>
 
 <div class="container mt-5">
-<div class="d-flex flex-row justify-content-center mb-5 my-5"> 
+<div class="d-flex flex-row justify-content-center mb-5 my-5 logo"> 
                       <img src="\assets\image\logo.png" alt="logo">
 </div>
                       <div class="d-flex flex-row justify-content-center mb-5 my-5">              
