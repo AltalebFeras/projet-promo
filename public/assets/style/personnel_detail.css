@@ -1,0 +1,82 @@
+.nom-detail{
+    background-color: #D9D9D9  !important;
+    box-shadow:  0 0 5px 0 #2A828C;
+    width: 200px !important;
+    height: 25px;
+}
+
+.prenom-detail{
+    background-color: #D9D9D9 !important;
+    box-shadow:  0 0 5px 0 #2A828C;
+    width: 200px !important;
+    height: 25px;
+}
+
+.email-detail{
+    background-color: #D9D9D9  !important;
+    box-shadow:  0 0 5px 0 #2A828C;
+    width: 200px !important;
+    height: 25px;
+}
+
+.dtc-detail{
+    background-color: #D9D9D9 !important;
+    box-shadow:  0 0 5px 0 #2A828C;
+    width: 200px !important;
+    height: 25px;
+}
+
+.telephone-detail{
+    background-color: #D9D9D9  !important;
+    box-shadow:  0 0 5px 0 #2A828C;
+    width: 200px !important;
+    height: 25px;
+}
+
+.statut-detail{
+    background-color: #D9D9D9 !important;
+    box-shadow:  0 0 5px 0 #2A828C;
+    width: 200px !important;
+    height: 35px;
+}   
+
+.debut-statut{
+    background-color: #D9D9D9 !important;
+    box-shadow:  0 0 5px 0 #2A828C;
+    width: 200px !important;
+    height: 25px;
+}
+
+.fin-statut {
+    background-color: #D9D9D9 !important;
+    box-shadow:  0 0 5px 0 #2A828C;
+    width: 200px !important;
+    height: 25px;
+}
+
+.evaluation-detail{
+    background-color: #D9D9D9 !important;
+    box-shadow:  0 0 5px 0 #072040;
+    width: 300px !important;
+    height: 150px !important;
+}
+
+.btn-danger{
+    background-color: #2A828C !important;
+    border-color: #68A689 !important;
+    
+}
+
+.btn-danger:hover{
+    background-color: #68A689 !important;
+    border-color: #2A828C !important;
+}
+
+
+.der-eval{
+    background-color: #D9D9D9 !important;
+    box-shadow:  0 0 5px 0 #072040;
+    border-radius: 5px;
+    width: 300px !important;
+    height: 150px !important;
+}
