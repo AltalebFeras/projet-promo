@@ -5,12 +5,12 @@ if (file_exists($_SERVER["DOCUMENT_ROOT"] . '/prod.txt')) {
         // Database connection
     define("DB_HOST", "localhost");
     define("DB_PORT", "3306");
-    define("DB_USER", "");
-    define("DB_PWD", "");
-    define("DB_NAME", "");
+    define("DB_USER", "agtc");
+    define("DB_PWD", "xY1rj81*2");
+    define("DB_NAME", "agtc");
     // Domain name , Home url 
-    define("HOME_URL", "");
-    define("Domain", "");
+    define("HOME_URL", "/");
+    define("Domain", "https://transport.feras.fr");
     define("PREFIXE", "transport_");
   
 } else {
