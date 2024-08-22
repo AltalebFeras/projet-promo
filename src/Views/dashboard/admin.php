@@ -32,6 +32,7 @@
                         <p class="card-text"><strong>Rôle:</strong> <?= htmlspecialchars($personnel['role_name']) ?></p>
                         <p class="card-text"><strong>Email:</strong> <?= htmlspecialchars($personnel['email']) ?></p>
                         <p class="card-text"><strong>Téléphone:</strong> <?= htmlspecialchars($personnel['telephone']) ?></p>
+                        <p><strong>Statut du personnel:</strong>  </p>
                         <p class="card-text"><strong>Évaluation:</strong> <?= isset($personnel['last_evaluation']) ? htmlspecialchars($personnel['last_evaluation']) : 'Aucune évaluation' ?></p>
                         <a href="<?= Domain . HOME_URL . 'dashboard/personnel_detaille?Id_personnel=' . $personnel['Id_personnel'] ?>" class="btn btn-primary">Détails</a>
                     </div>
