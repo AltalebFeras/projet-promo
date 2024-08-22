@@ -1,15 +1,15 @@
 <div class="container">
     <div class="row align-items-center mb-5">
         
-        <div class="col-md-3">
+        <div class="col-sm-3 ">
             <img class="logo-admin" src="<?= Domain . HOME_URL . 'assets/image/Logo.png'?>" alt="Logo de l'entreprise" />
         </div>
 
-        <div class="col-md-3">
+        <div class="col-sm-3 ">
             <a class="btn btn-bg-color rounded-pill" href="<?= Domain . HOME_URL ?>dashboard/ajouter_personnel">Ajouter Personnel</a>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-sm-3 ">
             <div class="d-flex">
                 <p class="mb-0 me-2">Trier par type:</p>
                 <select class="form-select w-auto">
@@ -21,7 +21,7 @@
             </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-sm-3 ">
             <div class="d-flex">
                 <p class="mb-0 me-2">Trier par type:</p>
             <select class="form-select w-auto">
@@ -58,7 +58,13 @@
                         <p class="card-text"><strong>Téléphone:</strong> <?= $personnel['telephone'] ?></p>
                         <p><strong>Statut du personnel:</strong> <?= $personnel['status_name'] ?> </p>
                         <p class="card-text"><strong>Évaluation:</strong> <?= isset($personnel['last_evaluation']) ? $personnel['last_evaluation'] : 'Aucune évaluation' ?></p>
-                        <a href="<?= Domain . HOME_URL . 'dashboard/personnel_detaille?Id_personnel=' . $personnel['Id_personnel'] ?>" class="btn btn-primary">Détails</a>
+                        <a href="<?= Domain . HOME_URL . 'dashboard/personnel_detaille?Id_personnel=' . $personnel['Id_personnel'] ?>" 
+                        
+                        class="btn rounded-pill">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+</svg>
+                    </a>
                     </div>
                 </div>
             </div>
