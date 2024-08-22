@@ -27,7 +27,6 @@
                       <?php endif; ?>
                     </div>
 
-                    <?php var_dump($_SESSION); ?>
                     <div class="d-flex flex-row justify-content-center mb-5 my-5">
                       <img src="\assets\image\logo.png" alt="logo">
                     </div>
