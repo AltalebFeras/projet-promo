@@ -1,12 +1,13 @@
 <?php include_once __DIR__ . '/../includes/header.php'; ?>
 
 <div class="container mt-5">
-<div class="d-flex flex-row justify-content-center mb-5 my-5"> 
+
+                      <div class="d-flex flex-row justify-content-center mb-5 my-5 titre-detail">              
+    <h2><strong>Ajouter/Editer Personnel</strong></h2>
+                      </div>
+                      <div class="d-flex flex-row justify-content-center mb-5 my-5 logo"> 
                       <img src="\assets\image\logo.png" alt="logo">
 </div>
-                      <div class="d-flex flex-row justify-content-center mb-5 my-5">              
-    <h2>Détails du Personnel</h2>
-                      </div>
 
                       <div class="row">
     <div class="alert-container">
@@ -17,7 +18,7 @@
             <div class="alert alert-success"><?php echo htmlspecialchars($_GET['success']); ?></div>
         <?php endif; ?>
     </div>
-<div class="col-md-4 align-self-center">
+<div class="col-md-4  align-self-center">
     <form method="post" action="<?= HOME_URL . 'dashboard/personnel_detaille?Id_personnel=' . $personnel['Id_personnel'] ?>" class="mb-4">
         <div class="mb-3">
             <label for="nom" class="form-label">Nom</label>
@@ -82,7 +83,7 @@
     </form>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-4 col-sm-12">
     <?php if ($personnel['role_name'] != 'admin') : ?>
         <h4 class="mt-4">Ajouter une évaluation</h4>
         <form method="post" action="<?= HOME_URL . 'dashboard/personnel_detaille?Id_personnel=' . $personnel['Id_personnel'] ?>" class="mb-4">
