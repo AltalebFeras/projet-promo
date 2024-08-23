@@ -2,9 +2,11 @@
 
 use src\Controllers\HomeController;
 use src\Controllers\PersonnelsController;
+use src\Controllers\VehiculesController;
 
 $homeController = new HomeController();
 $personnelsController = new PersonnelsController();
+$vehiculesController = new VehiculesController();
 
 $route = $_SERVER['REDIRECT_URL'] ?? '/';
 $method = $_SERVER['REQUEST_METHOD'];
@@ -81,6 +83,9 @@ switch ($route) {
                 switch ($_POST['action']) {
                     case 'ajouter_kilometrage':
                         $vehiculesController->ajouterKilometrage();
+                        break;
+                    case 'declarer_un_changement_du_lieu':
+                        $vehiculesController->declarerChangementLieu();
                         break;
                     case 'ajouter_commentaire_conducteur':
                         $vehiculesController->ajouterCommentaireConducteur();
