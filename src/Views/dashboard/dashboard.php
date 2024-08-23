@@ -10,10 +10,8 @@
         <?php
         if ($_SESSION['role'] === 'admin'):
             include_once __DIR__ . '/admin.php';
-        elseif ($_SESSION['role'] === 'conducteur'):
-            include_once __DIR__ . '/conducteur.php';
-        elseif ($_SESSION['role'] === 'mecanicien'):
-            include_once __DIR__ . '/mecanicien.php';
+        elseif ($_SESSION['role'] === 'conducteur' || $_SESSION['role'] === 'mecanicien'):
+            include_once __DIR__ . '/../vehicule/vehicules.php';
         else:
             echo '<div class="alert alert-warning">Erreur - veuillez vous déconnecter</div>';
         endif;
