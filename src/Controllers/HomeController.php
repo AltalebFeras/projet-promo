@@ -3,6 +3,7 @@
 namespace src\Controllers;
 
 use src\Repositories\PersonnelsRepository;
+use src\Repositories\VehiculesRepository;
 
 
 class HomeController
@@ -29,8 +30,12 @@ class HomeController
 
         $allPersonnelsWithStatus[] = $personnel;
     }
-    // var_dump($allPersonnelsWithStatus);
+    
+    $vehiculesRepository = new VehiculesRepository;
+    $vehicules = $vehiculesRepository->getAllVehicules();
+    // var_dump($vehicules);
     // die();
+
     include_once __DIR__ . '/../Views/dashboard/dashboard.php';
 }
 

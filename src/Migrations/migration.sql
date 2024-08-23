@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Aug 22, 2024 at 09:03 AM
+-- Generation Time: Aug 23, 2024 at 09:27 AM
 -- Server version: 8.3.0
 -- PHP Version: 8.3.8
 
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `transport_commentaires` (
   UNIQUE KEY `UQ_Id_commentaire` (`Id_commentaire`),
   KEY `FK_transport_vehicules_TO_transport_commentaires` (`Id_vehicule`),
   KEY `FK_transport_personnels_TO_transport_commentaires` (`Id_personnel`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `transport_etat` (
   `nom` varchar(150) NOT NULL,
   PRIMARY KEY (`Id_etat_vehicule`),
   UNIQUE KEY `UQ_Id_etat_vehicule` (`Id_etat_vehicule`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `transport_etat`
@@ -80,15 +80,15 @@ CREATE TABLE IF NOT EXISTS `transport_evaluations` (
   UNIQUE KEY `UQ_Id_evaluation` (`Id_evaluation`),
   KEY `FK_transport_personnels_TO_transport_evaluations` (`Id_admin`),
   KEY `FK_transport_personnels_TO_transport_evaluations1` (`Id_personnel`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `transport_evaluations`
 --
 
 INSERT INTO `transport_evaluations` (`Id_evaluation`, `texte`, `dtc`, `Id_admin`, `Id_personnel`) VALUES
-(20, 'erzer', '2024-08-21 20:32:49', 1, 3),
-(19, 'sdf', '2024-08-21 20:32:41', 1, 2);
+(25, 'dfgerer', '2024-08-22 16:57:51', 1, 3),
+(26, 'dsd', '2024-08-23 10:11:07', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -111,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `transport_personnels` (
   UNIQUE KEY `UQ_Id_personnel` (`Id_personnel`),
   UNIQUE KEY `UQ_email` (`email`),
   KEY `FK_transport_roles_TO_transport_personnels` (`Id_role`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `transport_personnels`
@@ -134,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `transport_roles` (
   `nom` varchar(150) NOT NULL,
   PRIMARY KEY (`Id_role`),
   UNIQUE KEY `UQ_Id_role` (`Id_role`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `transport_roles`
@@ -157,7 +157,7 @@ CREATE TABLE IF NOT EXISTS `transport_statut` (
   `nom` varchar(150) NOT NULL,
   PRIMARY KEY (`Id_statut`),
   UNIQUE KEY `UQ_Id_status` (`Id_statut`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `transport_statut`
@@ -186,14 +186,17 @@ CREATE TABLE IF NOT EXISTS `transport_statut_personnel` (
   UNIQUE KEY `UQ_Id_statut_personnels` (`Id_statut_personnels`),
   KEY `FK_transport_statut_TO_transport_statut_personnel` (`Id_statut`),
   KEY `FK_transport_personnels_TO_transport_statut_personnel` (`Id_personnel`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `transport_statut_personnel`
 --
 
 INSERT INTO `transport_statut_personnel` (`Id_statut_personnels`, `Id_statut`, `Id_personnel`, `date_debut`, `date_fin`, `dtc`) VALUES
-(3, 1, 3, '0000-00-00', '0000-00-00', '0000-00-00 00:00:00');
+(22, 1, 1, '0000-00-00', '0000-00-00', '2024-08-23 10:10:53'),
+(20, 1, 2, '0000-00-00', '0000-00-00', '2024-08-22 16:32:39'),
+(19, 1, 1, '0000-00-00', '0000-00-00', '2024-08-22 16:32:25'),
+(18, 1, 3, '0000-00-00', '0000-00-00', '2024-08-22 16:32:11');
 
 -- --------------------------------------------------------
 
@@ -212,7 +215,27 @@ CREATE TABLE IF NOT EXISTS `transport_vehicules` (
   PRIMARY KEY (`Id_vehicule`),
   UNIQUE KEY `UQ_Id_vehicule` (`Id_vehicule`),
   KEY `FK_transport_etat_TO_transport_vehicules` (`Id_etat_vehicule`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `transport_vehicules`
+--
+
+INSERT INTO `transport_vehicules` (`Id_vehicule`, `numero`, `type`, `date_ct`, `km`, `Id_etat_vehicule`) VALUES
+(1, 'BUS001', 'bus', '2024-08-01', 10000, 1),
+(2, 'BUS002', 'bus', '2024-08-02', 10500, 1),
+(3, 'BUS003', 'bus', '2024-08-03', 11000, 1),
+(4, 'BUS004', 'bus', '2024-08-04', 11500, 1),
+(5, 'BUS005', 'bus', '2024-08-05', 12000, 1),
+(6, 'BUS006', 'bus', '2024-08-06', 12500, 1),
+(7, 'BUS007', 'bus', '2024-08-07', 13000, 1),
+(8, 'BUS008', 'bus', '2024-08-08', 13500, 1),
+(9, 'BUS009', 'bus', '2024-08-09', 14000, 1),
+(10, 'BUS010', 'bus', '2024-08-10', 14500, 1),
+(11, 'TRAM001', 'tram', '2024-08-11', 20000, 1),
+(12, 'TRAM002', 'tram', '2024-08-12', 20500, 1),
+(13, 'TRAM003', 'tram', '2024-08-13', 21000, 1),
+(14, 'TRAM004', 'tram', '2024-08-14', 21500, 1);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
