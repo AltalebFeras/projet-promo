@@ -3,6 +3,22 @@
 
 <div class="container mt-5">
     <!-- Vehicle Details Section -->
+    <div class="d-flex flex-row justify-content-center mb-5 my-5 titre-detail">
+        <h2>Détails du Véhicule</h2>
+    </div>
+    <div class="d-flex flex-row justify-content-center mb-5 my-5 logo">
+        <img src="\assets\image\logo.png" alt="logo">
+    </div>
+
+
+    <div class="alert-container">
+        <?php if (isset($_GET['error'])): ?>
+            <div class="alert alert-danger"><?php echo htmlspecialchars($_GET['error']); ?></div>
+        <?php endif; ?>
+        <?php if (isset($_GET['success'])): ?>
+            <div class="alert alert-success"><?php echo htmlspecialchars($_GET['success']); ?></div>
+        <?php endif; ?>
+    </div>
     <div class="row">
         <div class="col-md-6">
             <div class="card">
@@ -19,36 +35,68 @@
     </div>
 
     <!-- Form to Update Kilométrage -->
+    <?php if ($_SESSION['role'] === 'conducteur'):  ?>
     <div class="row mt-4">
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Mettre à Jour le Kilométrage</h5>
-                    <form action="<?= Domain . HOME_URL ?>dashboard/update_kilometrage" method="post">
+                    <form action="<?= Domain . HOME_URL ?>dashboard/vehicule_detaille" method="post">
                         <div class="form-group mb-3">
                             <label for="km">Kilométrage Actuel</label>
                             <input type="number" name="km" id="km" class="form-control" required>
                         </div>
-                        <input type="hidden" name="Id_vehicule" value="<?= $vehicule['Id_vehicule'] ?>">
+                        <input type="hidden" name="action" value="ajouter_kilometrage">
+                        <input type="hidden" name="Id_vehicule" value="<?= $_GET['Id_vehicule'] ?>">
                         <button type="submit" class="btn btn-bg-color">Mettre à Jour</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+    <?php  endif;  ?>
+    
+        <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Déclarer un changement ?</h5>
+                    <form action="<?= Domain . HOME_URL ?>dashboard/vehicule_detaille" method="post">
+                        <div class="form-group mb-3">
+                            <label for="etat">Lieu Actuel</label>
+                            <select name="Id_etat_vehicule" id="etat" class="form-control" required>
+                                <?php foreach ($etats as $etat): ?>
+                                    <option value="<?= htmlspecialchars($etat['Id_etat_vehicule']) ?>" 
+                                            <?= $etat['Id_etat_vehicule'] == $vehicule['Id_etat_vehicule'] ? 'selected' : '' ?>>
+                                        <?= htmlspecialchars($etat['nom']) ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <input type="hidden" name="action" value="declarer_un_changement_du_lieu">
+                        <input type="hidden" name="Id_vehicule" value="<?= $_GET['Id_vehicule'] ?>">
+                        <button type="submit" class="btn btn-bg-color">Déclarer</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <!-- Form for Conducteur Commentaire -->
+
+    <!-- Form for  Commentaire -->
     <div class="row mt-4">
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Commentaire du Conducteur</h5>
-                    <form action="<?= Domain . HOME_URL ?>dashboard/add_conducteur_commentaire" method="post">
+                    <h5 class="card-title">Commentaire</h5>
+                    <p><?= $commentaire['texte'] ?></p>
+                    <form action="<?= Domain . HOME_URL ?>dashboard/vehicule_detaille" method="post">
                         <div class="form-group mb-3">
-                            <label for="commentaire_conducteur">Commentaire</label>
-                            <textarea name="commentaire_conducteur" id="commentaire_conducteur" class="form-control" rows="4" required></textarea>
+                            <label for="texte">Ajouter un commentaire</label>
+                            <textarea name="texte" id="texte" class="form-control" required ></textarea>                                
                         </div>
-                        <input type="hidden" name="Id_vehicule" value="<?= $vehicule['Id_vehicule'] ?>">
+                        <input type="hidden" name="action" value="ajouter_commentaire">
+                        <input type="hidden" name="Id_vehicule" value="<?= $_GET['Id_vehicule'] ?>">
                         <button type="submit" class="btn btn-bg-color">Ajouter Commentaire</button>
                     </form>
                 </div>
@@ -56,23 +104,6 @@
         </div>
     </div>
 
-    <!-- Form for Mécanicien Commentaire -->
-    <div class="row mt-4">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Commentaire du Mécanicien</h5>
-                    <form action="<?= Domain . HOME_URL ?>dashboard/add_mecanicien_commentaire" method="post">
-                        <div class="form-group mb-3">
-                            <label for="commentaire_mecanicien">Commentaire</label>
-                            <textarea name="commentaire_mecanicien" id="commentaire_mecanicien" class="form-control" rows="4" required></textarea>
-                        </div>
-                        <input type="hidden" name="Id_vehicule" value="<?= $vehicule['Id_vehicule'] ?>">
-                        <button type="submit" class="btn btn-bg-color">Ajouter Commentaire</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 </div>
 <?php include_once __DIR__ . '/../includes/footer.php'; ?>

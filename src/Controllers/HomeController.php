@@ -60,10 +60,14 @@ class HomeController
     public function afficherPageVehiculeDetaille($Id_vehicule){
         $vehiculesRepository = new VehiculesRepository();
         $vehicule = $vehiculesRepository->getVehiculeById($Id_vehicule);
+        $etats = $vehiculesRepository->getAllEtatOfVehicule();
+        $commentaire = $vehiculesRepository->getLastCommentairesByIdVehicule($Id_vehicule);
+
+        
+        // var_dump($commentaire);
+        // die();
         include_once __DIR__ . '/../Views/vehicule/vehicule_detaille.php';
         
-        // var_dump($vehicule);
-        // die();
     }
     public function deconexion()
     {
