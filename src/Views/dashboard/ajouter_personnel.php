@@ -8,7 +8,7 @@
                       <div class="d-flex flex-row justify-content-center mb-5 my-5 logo-ajout"> 
                       <img src="\assets\image\logo.png" alt="logo">
 </div>
-        <div class="row">
+        <div class="row ajout ">
     <div class="alert-container">
         <?php if (isset($_GET['error'])): ?>
             <div class="alert alert-danger"><?php echo htmlspecialchars($_GET['error']); ?></div>
