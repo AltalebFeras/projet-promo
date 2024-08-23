@@ -2,7 +2,7 @@
 
 use src\Controllers\HomeController;
 use src\Controllers\PersonnelsController;
- 
+
 $homeController = new HomeController();
 $personnelsController = new PersonnelsController();
 
@@ -20,61 +20,92 @@ switch ($route) {
         }
         break;
 
-        case HOME_URL. 'dashboard' :
-            if (isset($_SESSION['connecte']) && $_SESSION['connecte']) {
-                $homeController->displayDashboard();
-            } else {
-                $homeController->index();
-            }
-        break; 
-  
-        case HOME_URL. 'dashboard/ajouter_personnel':
-
-            if (isset($_SESSION['connecte']) && $_SESSION['connecte']) {
-                $homeController->afficherPageGestionPersonnels();
-            } else {
-                $homeController->index();
-            }
+    case HOME_URL . 'dashboard':
+        if (isset($_SESSION['connecte']) && $_SESSION['connecte']) {
+            $homeController->displayDashboard();
+        } else {
+            $homeController->index();
+        }
         break;
 
-      
+    case HOME_URL . 'dashboard/ajouter_personnel':
 
-        case HOME_URL . 'dashboard/personnel_detaille':
-            if ($method == 'POST' && isset($_SESSION['connecte']) && $_SESSION['connecte']) {
-                if (isset($_POST['action'])) {
-                    switch ($_POST['action']) {
-                        case 'ajout_personnel':
-                            $personnelsController->ajouterPersonnel();
-                            break;
-                        case 'edit_personnel':
-                            $personnelsController->editPersonnel();
-                            break;    
-                        case 'ajouter_evaluation':
-                            $personnelsController->ajouterEvaluation();
-                            break;
-                        case 'suprimmer_personnel':
-                            $personnelsController->supprimerPersonnel();
-                            break;
-                        case 'changer_status_personnel':
-                            $personnelsController->ajouterStatusPersonnel();
-                            break;
-                        default:
-                            // Handle unknown actions
-                            $homeController->page404();
-                            break;
-                    }
-                } else {
-                    // Handle the case where 'action' is not set
-                    $homeController->page404();
+        if (isset($_SESSION['connecte']) && $_SESSION['connecte']) {
+            $homeController->afficherPageGestionPersonnels();
+        } else {
+            $homeController->index();
+        }
+        break;
+
+
+
+    case HOME_URL . 'dashboard/personnel_detaille':
+        if ($method == 'POST' && isset($_SESSION['connecte']) && $_SESSION['connecte']) {
+            if (isset($_POST['action'])) {
+                switch ($_POST['action']) {
+                    case 'ajout_personnel':
+                        $personnelsController->ajouterPersonnel();
+                        break;
+                    case 'edit_personnel':
+                        $personnelsController->editPersonnel();
+                        break;
+                    case 'ajouter_evaluation':
+                        $personnelsController->ajouterEvaluation();
+                        break;
+                    case 'suprimmer_personnel':
+                        $personnelsController->supprimerPersonnel();
+                        break;
+                    case 'changer_status_personnel':
+                        $personnelsController->ajouterStatusPersonnel();
+                        break;
+                    default:
+                        // Handle unknown actions
+                        $homeController->page404();
+                        break;
                 }
-            } elseif (isset($_SESSION['connecte']) && $_SESSION['connecte']) {
-                $Id_personnel = $_GET['Id_personnel'];
-                $homeController->afficherPagePersonnelDetaille($Id_personnel);
             } else {
-                $homeController->index();
+                // Handle the case where 'action' is not set
+                $homeController->page404();
             }
-            break;
-        
+        } elseif (isset($_SESSION['connecte']) && $_SESSION['connecte']) {
+            $Id_personnel = $_GET['Id_personnel'];
+            $homeController->afficherPagePersonnelDetaille($Id_personnel);
+        } else {
+            $homeController->index();
+        }
+        break;
+
+    case HOME_URL . 'dashboard/vehicule_detaille':
+        if ($method == 'POST' && isset($_SESSION['connecte']) && $_SESSION['connecte']) {
+            if (isset($_POST['action'])) {
+                switch ($_POST['action']) {
+                    case 'ajouter_kilometrage':
+                        $vehiculesController->ajouterKilometrage();
+                        break;
+                    case 'ajouter_commentaire_conducteur':
+                        $vehiculesController->ajouterCommentaireConducteur();
+                        break;
+                    case 'ajouter_commentaire_mecanicien':
+                        $vehiculesController->ajouterCommentaireMecanicien();
+                        break;
+                    default:
+                        // Handle unknown actions
+                        $homeController->page404();
+                        break;
+                }
+            } else {
+                // Handle the case where 'action' is not set
+                $homeController->page404();
+            }
+        } elseif (isset($_SESSION['connecte']) && $_SESSION['connecte']) {
+            $Id_vehicule = $_GET['Id_vehicule'];
+            $homeController->afficherPageVehiculeDetaille($Id_vehicule);
+        } else {
+            $homeController->index();
+        }
+        break;
+
+
 
 
 

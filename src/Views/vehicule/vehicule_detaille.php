@@ -12,7 +12,7 @@
                     <p class="card-text"><strong>Type:</strong> <?= htmlspecialchars($vehicule['type']) ?></p>
                     <p class="card-text"><strong>Date de CT:</strong> <?= htmlspecialchars($vehicule['date_ct']) ?></p>
                     <p class="card-text"><strong>Kilométrage:</strong> <?= htmlspecialchars($vehicule['km']) ?> km</p>
-                    <p class="card-text"><strong>État du véhicule:</strong> <?= htmlspecialchars($vehicule['etat']) ?></p>
+                    <p class="card-text"><strong>État du véhicule:</strong> <?= htmlspecialchars($vehicule['etat_nom']) ?></p>
                 </div>
             </div>
         </div>

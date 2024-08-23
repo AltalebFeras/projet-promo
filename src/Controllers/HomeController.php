@@ -56,6 +56,15 @@ class HomeController
 
         include_once __DIR__ . '/../Views/dashboard/personnel_detaille.php';
     }
+
+    public function afficherPageVehiculeDetaille($Id_vehicule){
+        $vehiculesRepository = new VehiculesRepository();
+        $vehicule = $vehiculesRepository->getVehiculeById($Id_vehicule);
+        include_once __DIR__ . '/../Views/vehicule/vehicule_detaille.php';
+        
+        // var_dump($vehicule);
+        // die();
+    }
     public function deconexion()
     {
         session_destroy();
