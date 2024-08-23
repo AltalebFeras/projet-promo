@@ -87,3 +87,13 @@
     width: 200px;
     height: 200px;
 }
+
+.titre-detail{
+    font-family: merriweather   !important;
+    font-size: 30px;
+}
+
+.btn:hover{
+ background-color: #072040 !important;
+ border-color: #2A828C !important;
+}
