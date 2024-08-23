@@ -26,9 +26,17 @@
 }
 
 
-
 @media (width < 576px) {
    .nav-mobile{
     gap: 2rem;
+    
+   }
+
+   .mobile-center {
+    text-align: center;
+   }
+
+   .mob-center {
+    justify-content: center;
    }
 }

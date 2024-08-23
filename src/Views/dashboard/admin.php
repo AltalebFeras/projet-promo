@@ -1,15 +1,15 @@
 <div class="container">
-    <div class="row nav-mobile align-items-center mb-5">
-        <div class="col-lg-3 col-md-6">
+    <div class="row nav-mobile align-items-center mb-4">
+        <div class="col-lg-3 col-md-6 mobile-center">
             <img class="logo-admin" src="<?= Domain . HOME_URL . 'assets/image/Logo.png' ?>" alt="Logo de l'entreprise" />
         </div>
 
-        <div class="col-lg-3 col-md-6">
+        <div class="col-lg-3 col-md-6 mobile-center">
             <a class="btn btn-bg-color rounded-pill" href="<?= Domain . HOME_URL ?>dashboard/ajouter_personnel">Ajouter Personnel</a>
         </div>
 
         <div class="col-lg-3 col-md-6">
-            <div class="d-flex gap-1">
+            <div class="d-flex gap-1 mob-center">
                 <p class="mb-0">Trier par type:</p>
                 <select class="form-select w-auto p-0">
                     <option selected class="bg">Choisir ici</option>
@@ -21,7 +21,7 @@
         </div>
 
         <div class="col-lg-3 col-md-6">
-            <div class="d-flex gap-1">
+            <div class="d-flex gap-1 mob-center">
                 <p class="mb-0">Trier par type:</p>
                 <select class="form-select w-auto p-0">
                     <option selected>Choisir ici</option>
