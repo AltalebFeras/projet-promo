@@ -20,3 +20,15 @@
 .bi-search {
     width: 2rem;
 }
+
+.form-select {
+    background-color: #f2f2f2 !important;
+}
+
+
+
+@media (width < 576px) {
+   .nav-mobile{
+    gap: 2rem;
+   }
+}
