@@ -80,7 +80,7 @@
 
         
         <input type="hidden" name="action" value="ajout_personnel" />
-        <button type="submit" class="btn btn-primary">Ajouter</button>
+        <button type="submit" class="btn rounded-pill">Ajouter</button>
     </form>
 </div>
         </div>
