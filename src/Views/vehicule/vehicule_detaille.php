@@ -82,7 +82,22 @@
         </div>
     </div>
 
-
+ <!-- Form for  Commentaire -->
+ <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Dernier C.T. </h5>
+                                       <form action="<?= Domain . HOME_URL ?>dashboard/vehicule_detaille" method="post">
+                        
+                        <input type="hidden" name="action" value="ajouter_C_T">
+                        <input type="hidden" name="Id_vehicule" value="<?= $_GET['Id_vehicule'] ?>">
+                        <button type="submit" class="btn btn-bg-color">Mettre à jour</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Form for  Commentaire -->
     <div class="row mt-4">
         <div class="col-md-6">
@@ -90,6 +105,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Commentaire</h5>
                     <p><?= $commentaire['texte'] ?></p>
+                    <p><?= htmlspecialchars(date('d M. Y H:i', strtotime($commentaire['dtc']))) ?></p>
                     <form action="<?= Domain . HOME_URL ?>dashboard/vehicule_detaille" method="post">
                         <div class="form-group mb-3">
                             <label for="texte">Ajouter un commentaire</label>
@@ -103,6 +119,7 @@
             </div>
         </div>
     </div>
+
 
     
 </div>

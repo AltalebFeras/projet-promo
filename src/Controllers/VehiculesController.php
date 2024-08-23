@@ -88,7 +88,7 @@ public function declarerChangementLieu()
         if ($isUpdated) {
             header('Location: ' . HOME_URL . 'dashboard/vehicule_detaille?Id_vehicule=' . $Id_vehicule . '&success=Lieu mis à jour avec succès.');
         } else {
-            throw new Exception('Erreur lors de la mise à jour du lieu.');
+            throw new Exception('Vous n\'avez pas modifié le lieu actuel!');
         }
 
         exit();
@@ -119,6 +119,24 @@ public function ajouterCommentaire(){
         header('Location: '. HOME_URL. 'dashboard/vehicule_detaille?Id_vehicule='. $Id_vehicule. '&error='. urlencode($e->getMessage()));
         exit();
     
+    }
+}
+public function updateDate_ct(){
+    try {
+        $Id_vehicule = isset($_POST['Id_vehicule'])? htmlspecialchars($_POST['Id_vehicule']) : null;
+        if (!$Id_vehicule) {
+            throw new Exception('Veuillez renseigner l\'ID du véhicule.');
+        }
+       
+        $vehiculesRepository = new VehiculesRepository();
+        $vehiculesRepository->updateDtaeCT($Id_vehicule);
+        header('Location: '. HOME_URL. 'dashboard/vehicule_detaille?Id_vehicule='. $Id_vehicule. '&success=Temps de conso mis à jour avec succès.');
+        exit();
+        
+    } catch (Exception $e) {
+        error_log("updateDate_ct Error: ". $e->getMessage());
+        header('Location: '. HOME_URL. 'dashboard/vehicule_detaille?Id_vehicule='. $Id_vehicule. '&error='. urlencode($e->getMessage()));
+        exit();
     }
 }
 }
