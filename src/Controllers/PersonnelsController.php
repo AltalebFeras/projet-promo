@@ -139,8 +139,6 @@ class PersonnelsController
             $personnelRepository->editPersonnel($Id_personnel, $nom, $prenom, $date_arrive, $telephone, $email);
             header('Location: ' . HOME_URL . 'dashboard?success=Personnel modifié avec succès.');
             exit();
-
-
         } catch (Exception $e) {
             error_log("EditPersonnel Error: " . $e->getMessage());
             header('Location: ' . HOME_URL . 'dashboard/personnel_detaille?Id_personnel=' . $Id_personnel . '&error=' . urlencode($e->getMessage()));
@@ -154,6 +152,12 @@ class PersonnelsController
             $Id_personnel = isset($_GET['Id_personnel']) ? htmlspecialchars($_GET['Id_personnel']) : null;
             $personnelRepository = new PersonnelsRepository();
             $personnelRepository->supprimerPersonnel($Id_personnel);
+            if ($_SESSION['Id_personnel'] == $_GET['Id_personnel']) {
+                session_unset();
+                session_destroy();
+                header('Location: ' . HOME_URL . '?success=Vous êtes déconnecté et votre compte a été supprimé avec succès.');
+                exit();
+            }
             header('Location: ' . HOME_URL . 'dashboard?success=Personnel supprimé avec succès.');
             exit();
         } catch (Exception $e) {
@@ -169,20 +173,20 @@ class PersonnelsController
             $Id_statut = isset($_POST['Id_statut']) ? htmlspecialchars($_POST['Id_statut']) : null;
             $date_debut = isset($_POST['date_debut']) ? htmlspecialchars($_POST['date_debut']) : null;
             $date_fin = isset($_POST['date_fin']) ? htmlspecialchars($_POST['date_fin']) : null;
-    
+
             if (!$Id_personnel || !$Id_statut) {
                 throw new Exception('Required fields are missing.');
             }
-    
+
             if ($Id_statut !== '1') { // Assuming '1' is a Id_status for present
                 if (empty($date_debut) || empty($date_fin)) {
                     throw new Exception('Les dates de début (date_debut) et de fin (date_fin) sont toutes deux requises pour ce statut.');
                 }
             }
-    
+
             $personnelRepository = new PersonnelsRepository();
             $personnelRepository->ajouterStatusPersonnel($Id_personnel, $Id_statut, $date_debut, $date_fin);
-    
+
             header('Location: ' . HOME_URL . 'dashboard/personnel_detaille?Id_personnel=' . $Id_personnel . '&success=Statut du personnel modifié avec succès.');
             exit();
         } catch (Exception $e) {
@@ -191,5 +195,4 @@ class PersonnelsController
             exit();
         }
     }
-    
 }

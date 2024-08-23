@@ -44,7 +44,7 @@
             <input type="text" id="telephone" name="telephone" class="form-control telephone-detail" value="<?= htmlspecialchars($personnel['telephone']) ?>">
         </div>
 
-        <input type="hidden" name="action" value="edit_personnel modifier-detail" />
+        <input type="hidden" name="action" value="edit_personnel" />
         <button type="submit" class="btn btn-warning">Modifier</button>
     </form>
     </div>
@@ -108,13 +108,17 @@
     <?php endif; ?>
         <div class="col-md-4">
     <h4 class="mt-4">Effacer ce personnel</h4>
-    <form method="post" action="<?= HOME_URL . 'dashboard/personnel_detaille?Id_personnel=' . $personnel['Id_personnel'] ?>">
+    <form method="post" action="<?= HOME_URL . 'dashboard/personnel_detaille?Id_personnel=' . $personnel['Id_personnel'] ?>" onsubmit="return confirmDelete();">
         <input type="hidden" name="action" value="suprimmer_personnel" />
         <input type="hidden" name="Id_personnel" value="<?= $personnel['Id_personnel'] ?>" />
-        <button type="submit" class="btn btn-danger"><i class="bi bi-trash">Effacer</i></button>
+        <button type="submit" class="btn btn-danger"><i class="bi bi-trash"> Effacer</i></button>
     </form>
     </div>
     </div>
 </div>
-
+<script>
+    function confirmDelete() {
+        return confirm("Êtes-vous sûr de vouloir supprimer ce personnel ?");
+    }
+</script>
 <?php include_once __DIR__ . '/../includes/footer.php'; ?>
