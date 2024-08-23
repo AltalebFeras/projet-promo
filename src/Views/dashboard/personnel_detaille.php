@@ -3,7 +3,7 @@
 <div class="container mt-5">
 
                       <div class="d-flex flex-row justify-content-center mb-5 my-5 titre-detail">              
-    <h2><strong>Ajouter/Editer Personnel</strong></h2>
+    <h2><strong>Editer Personnel</strong></h2>
                       </div>
                       <div class="d-flex flex-row justify-content-center mb-5 my-5 logo"> 
                       <img src="\assets\image\logo.png" alt="logo">
@@ -18,30 +18,30 @@
             <div class="alert alert-success"><?php echo htmlspecialchars($_GET['success']); ?></div>
         <?php endif; ?>
     </div>
-<div class="col-md-4  align-self-center">
+<div class="col-md-4">
     <form method="post" action="<?= HOME_URL . 'dashboard/personnel_detaille?Id_personnel=' . $personnel['Id_personnel'] ?>" class="mb-4">
-        <div class="mb-3">
-            <label for="nom" class="form-label">Nom</label>
+        <div class="mb-3 d-flex flex-row justify-content-between">
+            <label for="nom" class="form-label">Nom :</label>
             <input type="text" id="nom" name="nom" class="form-control nom-detail" value="<?= htmlspecialchars($personnel['nom']) ?>">
         </div>
 
-        <div class="mb-3">
-            <label for="prenom" class="form-label">Prénom</label>
+        <div class="mb-3 d-flex flex-row justify-content-between">
+            <label for="prenom" class="form-label">Prénom :</label>
             <input type="text" id="prenom" name="prenom" class="form-control prenom-detail" value="<?= htmlspecialchars($personnel['prenom']) ?>">
         </div>
 
-        <div class="mb-3">
+        <div class="mb-3 d-flex flex-row justify-content-between">
             <label for="date_arrive" class="form-label">Date d'arrivée</label>
             <input type="date" id="date_arrive" name="date_arrive" class="form-control dtc-detail" value="<?= htmlspecialchars($personnel['date_arrive']) ?>">
         </div>
 
-        <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
+        <div class="mb-3 d-flex flex-row justify-content-between">
+            <label for="email" class="form-label">Email :</label>
             <input type="email" id="email" name="email" class="form-control email-detail" value="<?= htmlspecialchars($personnel['email']) ?>">
         </div>
 
-        <div class="mb-3">
-            <label for="telephone" class="form-label">Téléphone</label>
+        <div class="mb-3 d-flex justify-content-between">
+            <label for="telephone" class="form-label">Téléphone :</label>
             <input type="text" id="telephone" name="telephone" class="form-control telephone-detail" value="<?= htmlspecialchars($personnel['telephone']) ?>">
         </div>
 
@@ -59,7 +59,7 @@
 
     <h4 class="mt-4">Déclarer un changement</h4>
     <form method="post" action="<?= HOME_URL . 'dashboard/personnel_detaille?Id_personnel=' . $personnel['Id_personnel'] ?>" class="mb-4">
-        <div class="mb-3">
+        <div class="mb-3 d-row justify-content-between">
             <label for="statut" class="form-label">Sélectionnez un statut</label>
             <select id="statut" name="Id_statut" class="form-select statut-detail">
                 <option value="">Choisir...</option>
@@ -69,7 +69,7 @@
             </select>
         </div>
 
-        <div id="divForStatusDates" class="mb-3">
+        <div id="divForStatusDates" class="mb-3 d-row justify-content-between">
             <label for="date_debut" class="form-label">Date Début Statut</label>
             <input type="date" id="date_debut" name="date_debut" class="form-control debut-statut"><br>
 
@@ -107,7 +107,7 @@
     <?php else : ?>
         <p class="text-danger">Vous ne pouvez pas évaluer ce personnel !</p>
     <?php endif; ?>
-        <div class="col-md-4">
+        <div class="col-md-4 col-sm-12">
     <h4 class="mt-4">Effacer ce personnel</h4>
     <form method="post" action="<?= HOME_URL . 'dashboard/personnel_detaille?Id_personnel=' . $personnel['Id_personnel'] ?>">
         <input type="hidden" name="action" value="suprimmer_personnel" />
@@ -117,5 +117,5 @@
     </div>
     </div>
 </div>
-
+    </div>
 <?php include_once __DIR__ . '/../includes/footer.php'; ?>
