@@ -4,18 +4,8 @@
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Dashboard</h2>
         <a href="<?= Domain . HOME_URL ?>deconnexion" class="btn rounded-pill">Déconnexion</a>
-    </div>
 
-    <div class="alert-container">
-        <?php if (isset($_GET['error'])): ?>
-            <div class="alert alert-danger"><?php echo htmlspecialchars($_GET['error']); ?></div>
-        <?php endif; ?>
-        <?php if (isset($_GET['success'])): ?>
-            <div class="alert alert-success"><?php echo htmlspecialchars($_GET['success']); ?></div>
-        <?php endif; ?>
     </div>
-
-    <p class="lead">Bonjour, <strong><?php echo $_SESSION['nom'] ?></strong></p>
 
     <div class="role-content">
         <?php
