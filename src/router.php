@@ -87,12 +87,10 @@ switch ($route) {
                     case 'declarer_un_changement_du_lieu':
                         $vehiculesController->declarerChangementLieu();
                         break;
-                    case 'ajouter_commentaire_conducteur':
-                        $vehiculesController->ajouterCommentaireConducteur();
+                    case 'ajouter_commentaire':
+                        $vehiculesController->ajouterCommentaire();
                         break;
-                    case 'ajouter_commentaire_mecanicien':
-                        $vehiculesController->ajouterCommentaireMecanicien();
-                        break;
+                   
                     default:
                         // Handle unknown actions
                         $homeController->page404();

@@ -83,18 +83,20 @@
     </div>
 
 
-    <!-- Form for Conducteur Commentaire -->
+    <!-- Form for  Commentaire -->
     <div class="row mt-4">
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Commentaire du Conducteur</h5>
-                    <form action="<?= Domain . HOME_URL ?>dashboard/add_conducteur_commentaire" method="post">
+                    <h5 class="card-title">Commentaire</h5>
+                    <p><?= $commentaire['texte'] ?></p>
+                    <form action="<?= Domain . HOME_URL ?>dashboard/vehicule_detaille" method="post">
                         <div class="form-group mb-3">
-                            <label for="commentaire_conducteur">Commentaire</label>
-                            <textarea name="commentaire_conducteur" id="commentaire_conducteur" class="form-control" rows="4" required></textarea>
+                            <label for="texte">Ajouter un commentaire</label>
+                            <textarea name="texte" id="texte" class="form-control" required ></textarea>                                
                         </div>
-                        <input type="hidden" name="Id_vehicule" value="<?= $vehicule['Id_vehicule'] ?>">
+                        <input type="hidden" name="action" value="ajouter_commentaire">
+                        <input type="hidden" name="Id_vehicule" value="<?= $_GET['Id_vehicule'] ?>">
                         <button type="submit" class="btn btn-bg-color">Ajouter Commentaire</button>
                     </form>
                 </div>
@@ -102,23 +104,6 @@
         </div>
     </div>
 
-    <!-- Form for Mécanicien Commentaire -->
-    <div class="row mt-4">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Commentaire du Mécanicien</h5>
-                    <form action="<?= Domain . HOME_URL ?>dashboard/add_mecanicien_commentaire" method="post">
-                        <div class="form-group mb-3">
-                            <label for="commentaire_mecanicien">Commentaire</label>
-                            <textarea name="commentaire_mecanicien" id="commentaire_mecanicien" class="form-control" rows="4" required></textarea>
-                        </div>
-                        <input type="hidden" name="Id_vehicule" value="<?= $vehicule['Id_vehicule'] ?>">
-                        <button type="submit" class="btn btn-bg-color">Ajouter Commentaire</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 </div>
 <?php include_once __DIR__ . '/../includes/footer.php'; ?>
