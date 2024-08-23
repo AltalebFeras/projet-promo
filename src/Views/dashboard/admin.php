@@ -4,11 +4,11 @@
             <img class="logo-admin" src="<?= Domain . HOME_URL . 'assets/image/Logo.png' ?>" alt="Logo de l'entreprise" />
         </div>
 
-        <div class="col-sm-3">
+        <div class="col-md-3">
             <a class="btn btn-bg-color rounded-pill" href="<?= Domain . HOME_URL ?>dashboard/ajouter_personnel">Ajouter Personnel</a>
         </div>
 
-        <div class="col-sm-3">
+        <div class="col-md-3">
             <div class="d-flex">
                 <p class="mb-0 me-2">Trier par type:</p>
                 <select class="form-select w-auto">
@@ -20,7 +20,7 @@
             </div>
         </div>
 
-        <div class="col-sm-3">
+        <div class="col-md-3">
             <div class="d-flex">
                 <p class="mb-0 me-2">Trier par type:</p>
                 <select class="form-select w-auto">
@@ -46,7 +46,7 @@
     <?php foreach ($allPersonnelsWithStatus as $personnel) : ?>
         <?php if ($_SESSION['Id_personnel'] == $personnel['Id_personnel']) : ?>
             <div class="row mb-4">
-                <div class="col-md-12">
+                <div class="col-md-4">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title text-info">Mon Compte: <?= htmlspecialchars($personnel['nom']) . ' ' . htmlspecialchars($personnel['prenom']) ?></h5>
