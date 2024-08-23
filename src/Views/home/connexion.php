@@ -6,7 +6,7 @@
     <div class="main">
 
 
-      <div id="containerSignIn" class="">
+      
         <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col-lg-12 col-xl-11">
             <div class="card text-black">
@@ -27,7 +27,7 @@
                       <?php endif; ?>
                     </div>
 
-                    <div class="d-flex flex-row justify-content-center mb-5 my-5">
+                    <div class="d-flex flex-row justify-content-center mb-5 my-5 logo-connexion">
                       <img src="\assets\image\logo.png" alt="logo">
                     </div>
                     <p class="title text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4"></p>
@@ -46,7 +46,7 @@
                       </div>
 
                       <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                        <button id="submissionButtonSignIn" type="submit" class="btn btn-primary btn-lg connexion">Connexion</button>
+                        <button id="submissionButtonSignIn" type="submit" class="btn rounded-pill">Connexion</button>
                       </div>
                     </form>
 
@@ -57,7 +57,7 @@
             </div>
           </div>
         </div>
-      </div>
+    
 
     </div>
   </div>

@@ -16,7 +16,7 @@
             <div class="alert alert-success"><?php echo htmlspecialchars($_GET['success']); ?></div>
         <?php endif; ?>
     </div>
-    <div class="col-md-5  align-self-center">
+    <div class="col-lg-4 col-md-6">
     <form action="<?= Domain . HOME_URL .'dashboard/personnel_detaille' ?>" method="POST" class="mb-4">
         <div class="mb-3 d-flex flex-row justify-content-between">
             <label for="nom" class="form-label d-flex">Nom :</label>
@@ -48,7 +48,7 @@
             <input type="password" id="mdp" name="mdp" class="form-control ajout-mdp" required>
         </div>
         </div>
-        <div class="col-md-5">
+        <div class="col-lg-4 col-md-6">
         <div class="mb-3 d-flex flex-row justify-content-between">
             <label for="Id_role" class="form-label">Rôle :</label>
             <select id="Id_role" name="Id_role" class="form-select ajout-role" required>

@@ -18,7 +18,7 @@
             <div class="alert alert-success"><?php echo htmlspecialchars($_GET['success']); ?></div>
         <?php endif; ?>
     </div>
-<div class="col-md-4 align-self-center">
+<div class="col-lg-4 col-md-6">
     <form method="post" action="<?= HOME_URL . 'dashboard/personnel_detaille?Id_personnel=' . $personnel['Id_personnel'] ?>" class="mb-4">
         <div class="mb-3">
             <label for="nom" class="form-label">Nom</label>
@@ -50,7 +50,7 @@
     </form>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-lg-4 col-md-6">
     <p><strong>Statut Actuel:</strong> <?= $statuts_personnel ? htmlspecialchars($statuts_personnel['status_name']) : 'Aucun statut trouvé' ?></p>
     <?php if ($statuts_personnel['status_name'] !== 'present') : ?>
     <p>Du : </strong> <?= $statuts_personnel ? htmlspecialchars($statuts_personnel['date_debut']) : 'Aucun date trouvé' ?> </p>
@@ -83,7 +83,7 @@
     </form>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-lg-4 col-md-6">
     <?php if ($personnel['role_name'] != 'admin') : ?>
         <h4 class="mt-4">Ajouter une évaluation</h4>
         <form method="post" action="<?= HOME_URL . 'dashboard/personnel_detaille?Id_personnel=' . $personnel['Id_personnel'] ?>" class="mb-4">
@@ -107,7 +107,7 @@
     <?php else : ?>
         <p class="text-danger">Vous ne pouvez pas évaluer ce personnel !</p>
     <?php endif; ?>
-        <div class="col-md-4">
+        <div class="col-lg-4 col-md-6">
     <h4 class="mt-4">Effacer ce personnel</h4>
     <form method="post" action="<?= HOME_URL . 'dashboard/personnel_detaille?Id_personnel=' . $personnel['Id_personnel'] ?>" onsubmit="return confirmDelete();">
         <input type="hidden" name="action" value="suprimmer_personnel" />
