@@ -1,18 +1,18 @@
 <div class="container">
-    <div class="row align-items-center mb-5">
-        <div class="col-lg-4 col-md-6">
+    <div class="row nav-mobile align-items-center mb-4">
+        <div class="col-lg-3 col-md-6 mobile-center">
             <img class="logo-admin" src="<?= Domain . HOME_URL . 'assets/image/Logo.png' ?>" alt="Logo de l'entreprise" />
         </div>
 
-        <div class="col-lg-2 col-md-6">
+        <div class="col-lg-3 col-md-6 mobile-center">
             <a class="btn btn-bg-color rounded-pill" href="<?= Domain . HOME_URL ?>dashboard/ajouter_personnel">Ajouter Personnel</a>
         </div>
 
         <div class="col-lg-3 col-md-6">
-            <div class="d-flex">
-                <p class="mb-0 me-2">Trier par type:</p>
-                <select class="form-select w-auto">
-                    <option selected class="bg-warning">Choisir ici</option>
+            <div class="d-flex gap-1 mob-center">
+                <p class="mb-0">Trier par type:</p>
+                <select class="form-select w-auto p-0">
+                    <option selected class="bg">Choisir ici</option>
                     <option value="1">Administrateur</option>
                     <option value="2">Conducteur</option>
                     <option value="3">Mécanicien</option>
@@ -21,9 +21,9 @@
         </div>
 
         <div class="col-lg-3 col-md-6">
-            <div class="d-flex">
-                <p class="mb-0 me-2">Trier par type:</p>
-                <select class="form-select w-auto">
+            <div class="d-flex gap-1 mob-center">
+                <p class="mb-0">Trier par type:</p>
+                <select class="form-select w-auto p-0">
                     <option selected>Choisir ici</option>
                     <option value="1">Administrateur</option>
                     <option value="2">Conducteur</option>
@@ -71,7 +71,7 @@
     <div class="row">
         <?php foreach ($allPersonnelsWithStatus as $personnel) : ?>
             <?php if ($_SESSION['Id_personnel'] != $personnel['Id_personnel']) : ?>
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title"><?= htmlspecialchars($personnel['nom']) . ' ' . htmlspecialchars($personnel['prenom']) ?></h5>

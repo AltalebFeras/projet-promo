@@ -1,7 +1,7 @@
 <?php include_once __DIR__ . '/../includes/header.php'; ?>
 
-<div class="container-fluid mt-5">
-    <div class="d-flex justify-content-end align-items-center mb-4">
+<div class="container mt-4">
+    <div class="d-flex justify-content-end align-items-center">
         <a href="<?= Domain . HOME_URL ?>deconnexion" class="btn rounded-pill">Déconnexion</a>
 
     </div>
