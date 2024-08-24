@@ -2,7 +2,6 @@
 
     <div class="container-fluid">
         <div class="d-flex flex-column justify-content-between sidebar align-items-center p-3">
-            <?php include_once __DIR__ . '/../includes/sidebar.php'; ?>
         </div>
         <div class="main">
 
@@ -18,7 +17,6 @@
                                             <!-- div for messages -->
                                             <div class="my-3 successAndErrorMessage"></div>
                                             <!-- Input field for URL -->
-                                            <input type="hidden" class="urlPage" value="<?= htmlspecialchars(HOME_URL . 'dashboard') ?>" />
                                             <p class="error-title">403 Forbidden</p>
                                             <p class="error-message">Access to this page is restricted.</p>
                                             <p class="error-message">We knew you are not admin.</p>

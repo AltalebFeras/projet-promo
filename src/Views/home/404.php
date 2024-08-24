@@ -12,9 +12,7 @@
 								<h1 class="text-center ">404</h1>
 								<!-- div for messages -->
 								<div class="my-3 successAndErrorMessage"></div>
-								<!-- Input field for URL -->
-								<input type="hidden" class="urlPage" value="<?= htmlspecialchars(HOME_URL . 'dashboard') ?>" />
-
+								
 							</div>
 
 							<div class="contant_box_404">

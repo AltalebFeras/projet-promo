@@ -11,9 +11,9 @@
         <div class="row ajout ">
     <div class="alert-container">
         <?php if (isset($_GET['error'])): ?>
-            <div class="alert alert-danger"><?php echo htmlspecialchars($_GET['error']); ?></div>
+            <div class="alert alert-danger"><?php echo $_GET['error']; ?></div>
 	@@ -11,69 +17,71 @@
-            <div class="alert alert-success"><?php echo htmlspecialchars($_GET['success']); ?></div>
+            <div class="alert alert-success"><?php echo $_GET['success']; ?></div>
         <?php endif; ?>
     </div>
     <div class="col-lg-4 col-md-6">
