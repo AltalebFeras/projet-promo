@@ -33,7 +33,8 @@ class HomeController
     
     $vehiculesRepository = new VehiculesRepository;
     $vehicules = $vehiculesRepository->getAllVehicules();
-    // var_dump($vehicules);
+    $etats = $vehiculesRepository->getAllEtats();
+    // var_dump($etats);
     // die();
 
     include_once __DIR__ . '/../Views/dashboard/dashboard.php';

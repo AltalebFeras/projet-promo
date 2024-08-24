@@ -127,4 +127,12 @@ class VehiculesRepository
         $statement->execute();
         return $statement->rowCount() > 0;
     }
+    public function getAllEtats(){
+        $query = 'SELECT * FROM '. PREFIXE.'etat';
+        $statement = $this->DB->prepare($query);
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+    
 }
