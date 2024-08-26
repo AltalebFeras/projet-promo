@@ -35,24 +35,24 @@
 
     <!-- Form to Update Kilométrage -->
     <?php if ($_SESSION['role'] === 'conducteur'): ?>
-    <div class="row mt-4">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Mettre à Jour le Kilométrage</h5>
-                    <form action="<?= Domain . HOME_URL ?>dashboard/vehicule_detaille" method="post">
-                        <div class="form-group mb-3">
-                            <label for="km">Kilométrage Actuel</label>
-                            <input type="number" name="km" id="km" class="form-control" required>
-                        </div>
-                        <input type="hidden" name="action" value="ajouter_kilometrage">
-                        <input type="hidden" name="Id_vehicule" value="<?= $_GET['Id_vehicule'] ?>">
-                        <button type="submit" class="btn btn-bg-color">Mettre à Jour</button>
-                    </form>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Mettre à Jour le Kilométrage</h5>
+                        <form action="<?= Domain . HOME_URL ?>dashboard/vehicule_detaille" method="post">
+                            <div class="form-group mb-3">
+                                <label for="km">Kilométrage Actuel</label>
+                                <input type="number" name="km" id="km" class="form-control" required>
+                            </div>
+                            <input type="hidden" name="action" value="ajouter_kilometrage">
+                            <input type="hidden" name="Id_vehicule" value="<?= $_GET['Id_vehicule'] ?>">
+                            <button type="submit" class="btn btn-bg-color">Mettre à Jour</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     <?php endif; ?>
 
     <!-- Form for Updating Lieu -->
@@ -66,8 +66,8 @@
                             <label for="etat">Lieu Actuel</label>
                             <select name="Id_etat_vehicule" id="etat" class="form-control" required>
                                 <?php foreach ($etats as $etat): ?>
-                                    <option value="<?= $etat['Id_etat_vehicule'] ?>" 
-                                            <?= $etat['Id_etat_vehicule'] == $vehicule['Id_etat_vehicule'] ? 'selected' : '' ?>>
+                                    <option value="<?= $etat['Id_etat_vehicule'] ?>"
+                                        <?= $etat['Id_etat_vehicule'] == $vehicule['Id_etat_vehicule'] ? 'selected' : '' ?>>
                                         <?= $etat['nom'] ?>
                                     </option>
                                 <?php endforeach; ?>
@@ -100,20 +100,51 @@
 
     <!-- Comment Section -->
     <div class="row mt-4">
-        <div class="col-md-6">
+        <!-- conducteur Section -->
+        <div class="d-flex align-items-baseline gap-5">
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div>
+                            <h5 class="card-title">Commentaire conducteur</h5>
+                            <?php if (isset($commentaire['texte'])): ?>
+                                <p><?= $commentaire['texte'] ?></p>
+                                <p><?= date('d M. Y H:i', strtotime($commentaire['dtc'])) ?></p>
+                            <?php else: ?>
+                                <p>Aucun commentaire disponible.</p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- mécanos Section -->
+
+            <div class="col-md-6 mt-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div>
+                            <h5 class="card-title">Commentaire mécanos</h5>
+                            <?php if (isset($commentaire['texte'])): ?>
+                                <p><?= $commentaire['texte'] ?></p>
+                                <p><?= date('d M. Y H:i', strtotime($commentaire['dtc'])) ?></p>
+                            <?php else: ?>
+                                <p>Aucun commentaire disponible.</p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Ajouter un Commentaire Section -->
+        </div>
+
+        <div class="col-md-12 mt-4 my-5">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Commentaire</h5>
-                    <?php if (isset($commentaire['texte'])): ?>
-                        <p><?= $commentaire['texte'] ?></p>
-                        <p><?= date('d M. Y H:i', strtotime($commentaire['dtc'])) ?></p>
-                    <?php else: ?>
-                        <p>Aucun commentaire disponible.</p>
-                    <?php endif; ?>
                     <form action="<?= Domain . HOME_URL ?>dashboard/vehicule_detaille" method="post">
                         <div class="form-group mb-3">
                             <label for="texte">Ajouter un commentaire</label>
-                            <textarea name="texte" id="texte" class="form-control" required></textarea>                                
+                            <textarea name="texte" id="texte" class="form-control" required></textarea>
                         </div>
                         <input type="hidden" name="action" value="ajouter_commentaire">
                         <input type="hidden" name="Id_vehicule" value="<?= $_GET['Id_vehicule'] ?>">
@@ -123,6 +154,7 @@
             </div>
         </div>
     </div>
+
 </div>
 
 <?php include_once __DIR__ . '/../includes/footer.php'; ?>
