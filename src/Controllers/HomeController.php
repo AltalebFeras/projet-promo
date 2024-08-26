@@ -14,33 +14,33 @@ class HomeController
     }
 
     public function displayDashboard()
-{
-    $personnelsRepository = new PersonnelsRepository();
-    
-    $personnels = $personnelsRepository->getAllPersonnelsDetailed();
-    
-    $allPersonnelsWithStatus = [];
+    {
+        $personnelsRepository = new PersonnelsRepository();
 
-    foreach ($personnels as $personnel) {
-        $Id_personnel = $personnel['Id_personnel'];
+        $personnels = $personnelsRepository->getAllPersonnelsDetailed();
 
-        $status = $personnelsRepository->getTheLastStatusForEachPersonnel($Id_personnel);
-        
-        $personnel['status_name'] = $status ? $status['status_name'] : 'Aucun statut';
+        $allPersonnelsWithStatus = [];
 
-        $allPersonnelsWithStatus[] = $personnel;
+        foreach ($personnels as $personnel) {
+            $Id_personnel = $personnel['Id_personnel'];
+
+            $status = $personnelsRepository->getTheLastStatusForEachPersonnel($Id_personnel);
+
+            $personnel['status_name'] = $status ? $status['status_name'] : 'Aucun statut';
+
+            $allPersonnelsWithStatus[] = $personnel;
+        }
+
+        $vehiculesRepository = new VehiculesRepository;
+        $vehicules = $vehiculesRepository->getAllVehicules();
+        $etats = $vehiculesRepository->getAllEtats();
+        // var_dump($etats);
+        // die();
+
+        include_once __DIR__ . '/../Views/dashboard/dashboard.php';
     }
-    
-    $vehiculesRepository = new VehiculesRepository;
-    $vehicules = $vehiculesRepository->getAllVehicules();
-    $etats = $vehiculesRepository->getAllEtats();
-    // var_dump($etats);
-    // die();
 
-    include_once __DIR__ . '/../Views/dashboard/dashboard.php';
-}
 
-    
 
     public function afficherPageGestionPersonnels()
     {
@@ -58,17 +58,20 @@ class HomeController
         include_once __DIR__ . '/../Views/dashboard/personnel_detaille.php';
     }
 
-    public function afficherPageVehiculeDetaille($Id_vehicule){
+    public function afficherPageVehiculeDetaille($Id_vehicule)
+    {
         $vehiculesRepository = new VehiculesRepository();
         $vehicule = $vehiculesRepository->getVehiculeById($Id_vehicule);
         $etats = $vehiculesRepository->getAllEtatOfVehicule();
-        $commentaire = $vehiculesRepository->getLastCommentairesByIdVehicule($Id_vehicule);
+        $Id_role = 2; // role mecanicien
+        $commentaire_mecanicien = $vehiculesRepository->getLastCommentairesByIdVehicule($Id_vehicule, $Id_role);
+        $Id_role = 3; // role conducteur
+        $commentaire_conducteur = $vehiculesRepository->getLastCommentairesByIdVehicule($Id_vehicule, $Id_role);
 
-        
-        // var_dump($commentaire);
+
+        // var_dump($commentaire_mecanicien, $commentaire_conducteur );
         // die();
         include_once __DIR__ . '/../Views/vehicule/vehicule_detaille.php';
-        
     }
     public function deconexion()
     {
