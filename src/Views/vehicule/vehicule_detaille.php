@@ -1,6 +1,7 @@
 <?php include_once __DIR__ . '/../includes/header.php'; ?>
 
 <div class="container mt-5">
+    <a class="btn btn-outlin-secondary" href="<?= Domain . HOME_URL .'dashboard'?>">Retoure</a>
     <!-- Logo and Title Section -->
     <div class="text-center mb-5">
         <img src="\assets\image\logo.png" alt="logo" class="img-fluid mb-3" style="max-width: 150px;">
