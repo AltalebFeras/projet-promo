@@ -103,19 +103,22 @@ class VehiculesRepository
         return $this->DB->lastInsertId();
     }
 
-    public function getLastCommentairesByIdVehicule($Id_vehicule)
+    public function getLastCommentairesByIdVehicule($Id_vehicule, $Id_role)
+
     {
-        $query = 'SELECT c.*, p.nom AS personnel_nom 
-              FROM ' . PREFIXE . 'commentaires c
-              JOIN ' . PREFIXE . 'personnels p ON c.Id_personnel = p.Id_personnel
-              WHERE c.Id_vehicule = :Id_vehicule
-              ORDER BY c.dtc DESC
-              LIMIT 1';
+        $query = 'SELECT c.texte, c.dtc, p.nom, p.prenom 
+        FROM ' . PREFIXE . 'commentaires c
+        JOIN ' . PREFIXE . 'personnels p ON c.Id_personnel = p.Id_personnel
+        WHERE c.Id_vehicule = :Id_vehicule
+        AND p.Id_role = :Id_role
+        ORDER BY c.dtc DESC
+        LIMIT 1';
 
         $statement = $this->DB->prepare($query);
         $statement->bindParam(':Id_vehicule', $Id_vehicule, PDO::PARAM_INT);
+        $statement->bindParam(':Id_role', $Id_role, PDO::PARAM_INT);
         $statement->execute();
-        return $statement->fetch(PDO::FETCH_ASSOC);
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
     public function updateDtaeCT($Id_vehicule)
     {
@@ -127,12 +130,11 @@ class VehiculesRepository
         $statement->execute();
         return $statement->rowCount() > 0;
     }
-    public function getAllEtats(){
-        $query = 'SELECT * FROM '. PREFIXE.'etat';
+    public function getAllEtats()
+    {
+        $query = 'SELECT * FROM ' . PREFIXE . 'etat';
         $statement = $this->DB->prepare($query);
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);
-
     }
-    
 }
