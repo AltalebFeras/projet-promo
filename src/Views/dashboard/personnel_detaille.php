@@ -69,7 +69,7 @@
             </select>
         </div>
 
-        <div id="divForStatusDates" class="mb-3 d-flex flex-row justify-content-between">
+        <div id="divForStatusDates" class="mb-3">
             <label for="date_debut" class="form-label">Date Début Statut</label>
             <input type="date" id="date_debut" name="date_debut" class="form-control debut-statut"><br>
 
