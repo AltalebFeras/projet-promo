@@ -9,6 +9,11 @@
     box-shadow: 0 3px 2px #2a828c;
 }
 
+.btn:hover {
+    background-color: #072040 !important;
+    box-shadow: #68a689;
+}
+
 .card {
     border-radius: 1.5rem !important;
     background-color: #f2f2f2 !important;
@@ -25,18 +30,11 @@
     background-color: #f2f2f2 !important;
 }
 
+.eval {
+    border: 1px solid #000000;
+    border-radius: 20px;
+    box-shadow: 4px 4px 3px #68a689;
 
-@media (width < 768px) {
-   .nav-mobile{
-    gap: 2rem;
-    
-   }
+} 
 
-   .mobile-center {
-    text-align: center;
-   }
 
-   .mob-center {
-    justify-content: center;
-   }
-}
