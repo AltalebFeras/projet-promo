@@ -59,7 +59,7 @@
 
     <h4 class="mt-4">Déclarer un changement</h4>
     <form method="post" action="<?= HOME_URL . 'dashboard/personnel_detaille?Id_personnel=' . $personnel['Id_personnel'] ?>" class="mb-4">
-        <div class="mb-3 d-flex flex-row justify-content-between">
+        <div class="mb-3">
             <label for="statut" class="form-label">Sélectionnez un statut</label>
             <select id="statut" name="Id_statut" class="form-select statut-detail">
                 <option value="">Choisir...</option>
