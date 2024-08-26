@@ -1,15 +1,15 @@
 <div class="container">
     <div class="row nav-mobile align-items-center mb-5">
-        <div class="col-lg-3 col-md-6 mobile-center">
-            <img class="logo-admin" src="<?= Domain . HOME_URL . 'assets/image/Logo.png' ?>" alt="Logo de l'entreprise" />
+        <div class="col-lg-4 col-md-12 mobile-center nav-ipad">
+            <img class="logo-admin logo-ipad" src="<?= Domain . HOME_URL . 'assets/image/Logo.png' ?>" alt="Logo de l'entreprise" />
         </div>
 
-       
+    
 
-        <div class="col-lg-3 col-md-6">
+        <div class="col-lg-4 col-md-6">
             <div class="d-flex gap-1 mob-center">
                 <p class="mb-0">Trier par type:</p>
-                <select class="form-select w-auto p-0" onchange="location = this.value;">
+                <select class="form-select w-auto py-0" onchange="location = this.value;">
                     <option selected class="bg-warning">Choisir ici</option>
                     <option value="<?= Domain . HOME_URL ?>dashboard?vehicules_type=bus">Bus</option>
                     <option value="<?= Domain . HOME_URL ?>dashboard?vehicules_type=tram">Tram</option>
@@ -17,10 +17,10 @@
             </div>
         </div>
 
-        <div class="col-lg-3 col-md-6">
+        <div class="col-lg-4 col-md-6">
             <div class="d-flex gap-1 mob-center">
                 <p class="mb-0">Trier par état:</p>
-                <select class="form-select w-auto p-0" onchange="location = this.value;">
+                <select class="form-select w-auto py-0" onchange="location = this.value;">
                     <option selected>Choisir ici</option>
                     <option value="<?= Domain . HOME_URL ?>dashboard?vehicules_etat=circulation">Circulation</option>
                     <option value="<?= Domain . HOME_URL ?>dashboard?vehicules_etat=parking">Parking</option>
@@ -42,7 +42,7 @@
     <!-- Section for all vehicles -->
     <div class="row">
         <?php foreach ($vehicules as $vehicule) : ?>
-            <div class="col-md-4 mb-4">
+            <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card">
                     <div class="p-5 card-body">
                         <h5 class="card-title"><?= htmlspecialchars($vehicule['numero']) ?></h5>
@@ -50,7 +50,7 @@
                         <p class="card-text"><strong>Date de CT:</strong> <?= htmlspecialchars($vehicule['date_ct']) ?></p>
                         <p class="card-text"><strong>Kilométrage:</strong> <?= htmlspecialchars($vehicule['km']) ?> km</p>
 
-                        <div class="etat-vehicule">
+                        <div class="etat-vehicule p-4 my-4">
                         <p><strong>État du véhicule:</strong> <?= htmlspecialchars($vehicule['etat_nom']) ?></p>
                         </div>
                         <a href="<?= Domain . HOME_URL . 'dashboard/vehicule_detaille?Id_vehicule=' . $vehicule['Id_vehicule'] ?>" class="btn rounded-pill">

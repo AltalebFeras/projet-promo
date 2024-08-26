@@ -1,8 +1,32 @@
+.btn:hover {
+    background-color: #072040 !important;
+    box-shadow: #68a689;
+}
+
 .etat-vehicule {
     border: 1px solid #000000;
     border-radius: 20px;
-    box-shadow: 4px 4px 3px #68a689;
+    box-shadow: 4px 4px 3px #2a828c;
 
 }
 
+@media (width < 992px) {
+    .logo-ipad{
+        width: 30%;
+    }
+
+    .nav-ipad {
+        margin-bottom: 20px;
+    }
+ }
+
+ @media (width < 768px) {
+    .logo-ipad{
+        width: 40%;
+    }
+
+    .nav-ipad {
+        margin-bottom: 0;
+    }
+ }
 

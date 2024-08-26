@@ -33,8 +33,19 @@
 .eval {
     border: 1px solid #000000;
     border-radius: 20px;
-    box-shadow: 4px 4px 3px #68a689;
+    box-shadow: 4px 4px 3px #2a828c;
 
 } 
 
+@media (width < 768px) {
+    .nav-mobile{
+     gap: 2rem;
+    }
 
+    .mobile-center {
+     text-align: center;
+    }
+    .mob-center {
+     justify-content: center;
+    }
+ }
