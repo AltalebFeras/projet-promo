@@ -1,5 +1,4 @@
 .email-connexion {
-
     background-color: #F2F2F2 !important;
     border-radius: 2rem !important;
 }
@@ -8,13 +7,17 @@
     background-color: #F2F2F2 !important;
     border-radius: 2rem !important;
 }
+
 .logo-connexion {
-    width: 200px;
-    height: 200px;
+    width: 10rem;
 }
-.btn{
 
-    background-color: #68A689 !important;
-
-    border-radius: 5px;
+.form-connexion {
+    width: 20rem;
 }
+
+.btn-connexion {
+    margin: 0 5rem;
+}
+
+

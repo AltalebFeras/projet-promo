@@ -5,6 +5,7 @@
 <div class="d-flex flex-row justify-content-center mb-5 my-5 titre-ajout">              
     <h2><strong>Ajouter Personnel</strong></h2>
                       </div>
+                      <a class="btn rounded-pill" href="<?= Domain . HOME_URL .'dashboard'?>">Retour</a>
                       <div class="d-flex flex-row justify-content-center mb-5 my-5 logo-ajout"> 
                       <img src="\assets\image\logo.png" alt="logo">
 </div>

@@ -4,7 +4,7 @@
     <div class="d-flex flex-row justify-content-center mb-5 my-5 titre-detail">
         <h2>Détails du Personnel</h2>
     </div>
-    <a class="btn btn-outlin-secondary" href="<?= Domain . HOME_URL . 'dashboard' ?>">Retoure</a>
+    <a class="btn rounded-pill" href="<?= Domain . HOME_URL . 'dashboard' ?>">Retour</a>
 
     <div class="d-flex flex-row justify-content-center mb-5 my-5 logo">
         <img src="\assets\image\logo.png" alt="logo">

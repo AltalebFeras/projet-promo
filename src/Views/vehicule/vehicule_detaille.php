@@ -1,7 +1,7 @@
 <?php include_once __DIR__ . '/../includes/header.php'; ?>
 
 <div class="container mt-5">
-    <a class="btn btn-outlin-secondary" href="<?= Domain . HOME_URL .'dashboard'?>">Retoure</a>
+    <a class="btn rounded-pill" href="<?= Domain . HOME_URL .'dashboard'?>">Retour</a>
     <!-- Logo and Title Section -->
     <div class="text-center mb-5">
         <img src="\assets\image\logo.png" alt="logo" class="img-fluid mb-3" style="max-width: 150px;">
@@ -24,7 +24,7 @@
         <div class="col-md-6">
             <div class="mb-3">
                 <strong>Le véhicule est actuellement :</strong>
-                <p><?= $vehicule['etat_nom'] ?? 'Non disponible' ?></p>
+                <p><?= $vehicule['etat_nom'] ?? 'Non disponible'?></p>
             </div>
         </div>
         <div class="col-md-6">
@@ -73,7 +73,7 @@
                     </div>
                     <input type="hidden" name="action" value="ajouter_kilometrage">
                     <input type="hidden" name="Id_vehicule" value="<?= $_GET['Id_vehicule'] ?>">
-                    <button type="submit" class="btn btn-primary mt-2">Mettre à Jour</button>
+                    <button type="submit" class="btn rounded-pill mt-2">Mettre à Jour</button>
                 </form>
             <?php endif; ?>
         </div>
@@ -91,7 +91,7 @@
 
                 <input type="hidden" name="action" value="ajouter_C_T">
                 <input type="hidden" name="Id_vehicule" value="<?= $_GET['Id_vehicule'] ?>">
-                <button type="submit" class="btn btn-primary mt-2" onclick="return confirmSubmit()">Mettre à jour</button>
+                <button type="submit" class="btn rounded-pill mt-2" onclick="return confirmSubmit()">Mettre à jour</button>
             </form>
         </div>
     </div>
@@ -145,7 +145,7 @@
                         <textarea name="texte" id="texte" class="form-control mb-3" rows="4" required placeholder="Zone pour ajouter le commentaire"></textarea>
                         <input type="hidden" name="action" value="ajouter_commentaire">
                         <input type="hidden" name="Id_vehicule" value="<?= $_GET['Id_vehicule'] ?>">
-                        <button type="submit" class="btn btn-primary">Ajouter Commentaire</button>
+                        <button type="submit" class="btn rounded-pill">Ajouter Commentaire</button>
                     </form>
                 </div>
             </div>

@@ -1,11 +1,11 @@
 <div class="container">
     <div class="row nav-mobile align-items-center mb-4">
-        <div class="col-lg-3 col-md-6 mobile-center">
+        <div class="col-lg-3 col-md-6 mobile-center nav-ipad">
             <img class="logo-admin" src="<?= Domain . HOME_URL . 'assets/image/Logo.png' ?>" alt="Logo de l'entreprise" />
         </div>
 
         <div class="col-lg-3 col-md-6 mobile-center">
-            <a class="btn btn-bg-color rounded-pill" href="<?= Domain . HOME_URL ?>dashboard/ajouter_personnel">Ajouter Personnel</a>
+            <a class="btn rounded-pill" href="<?= Domain . HOME_URL ?>dashboard/ajouter_personnel">Ajouter Personnel</a>
         </div>
 
         <div class="col-lg-3 col-md-6">

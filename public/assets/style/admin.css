@@ -42,6 +42,10 @@
      gap: 2rem;
     }
 
+    .logo-admin {
+        width: 40%;
+    }
+
     .mobile-center {
      text-align: center;
     }
