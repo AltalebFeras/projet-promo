@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row nav-mobile align-items-center mb-4">
         <div class="col-lg-3 col-md-6 mobile-center nav-ipad">
-            <img class="logo-admin" src="<?= Domain . HOME_URL . 'assets/image/Logo.png' ?>" alt="Logo de l'entreprise" />
+            <img class="logo-admin" src="<?= Domain . HOME_URL . 'assets/image/logo.png'; ?>"alt="Logo de l'entreprise" />
         </div>
 
         <div class="col-lg-3 col-md-6 mobile-center">

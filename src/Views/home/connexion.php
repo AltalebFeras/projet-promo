@@ -15,7 +15,7 @@
 
   
     <div class="d-flex  flex-column justify-content-center align-items-center gap-4">
-      <img class="logo-connexion" src="\assets\image\logo.png" alt="logo"/>
+    <img class="logo-connexion" src="<?= Domain . HOME_URL . 'assets/image/logo.png'; ?>" alt="logo"/>
 
 
       <form action="<?= Domain . HOME_URL  ?>" method="POST" id="formConnexion" class="form-connexion">
