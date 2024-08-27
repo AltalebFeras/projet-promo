@@ -1,11 +1,13 @@
 .email-connexion {
     background-color: #F2F2F2 !important;
     border-radius: 2rem !important;
+    box-shadow: 0 3px 2px #2a828c;
 }
 
 .mdp-connexion {
     background-color: #F2F2F2 !important;
     border-radius: 2rem !important;
+    box-shadow: 0 3px 2px #2a828c;
 }
 
 .logo-connexion {
