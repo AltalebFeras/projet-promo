@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row nav-mobile align-items-center mb-4">
         <div class="col-lg-3 col-md-6 mobile-center nav-ipad">
-            <img class="logo-admin" src="<?= Domain . HOME_URL . 'assets/image/logo.png'; ?>"alt="Logo de l'entreprise" />
+            <img class="logo-admin" src="<?= Domain . HOME_URL . 'assets/image/logo.png'; ?>" alt="Logo de l'entreprise" />
         </div>
 
         <div class="col-lg-3 col-md-6 mobile-center">
@@ -56,7 +56,7 @@
                             <p><strong>Statut du personnel:</strong> <?= htmlspecialchars($personnel['status_name']) ?></p>
 
                             <div class="eval p-4 my-4">
-                            <p class="card-text"><strong>Dernière évaluation:</strong> <?= isset($personnel['last_evaluation']) ? htmlspecialchars($personnel['last_evaluation']) : 'Aucune évaluation' ?></p>
+                                <p class="card-text"><strong>Dernière évaluation:</strong> <?= isset($personnel['last_evaluation']) ? htmlspecialchars($personnel['last_evaluation']) : 'Aucune évaluation' ?></p>
                             </div>
                             <a href="<?= Domain . HOME_URL . 'dashboard/personnel_detaille?Id_personnel=' . $personnel['Id_personnel'] ?>" class="btn rounded-pill">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -85,7 +85,7 @@
 
 
                             <div class="eval p-4 my-4">
-                            <p class="card-text"><strong>Dernière évaluation:</strong> <?= isset($personnel['last_evaluation']) ? htmlspecialchars($personnel['last_evaluation']) : 'Aucune évaluation' ?></p>
+                                <p class="card-text"><strong>Dernière évaluation:</strong> <?= isset($personnel['last_evaluation']) ? htmlspecialchars($personnel['last_evaluation']) : 'Aucune évaluation' ?></p>
                             </div>
                             <a href="<?= Domain . HOME_URL . 'dashboard/personnel_detaille?Id_personnel=' . $personnel['Id_personnel'] ?>" class="btn rounded-pill">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">

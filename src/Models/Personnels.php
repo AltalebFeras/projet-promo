@@ -17,10 +17,10 @@ class Personnels
     private $Id_statut_personnels;
     private $Id_role;
 
-    
+
     use Hydratation;
 
-     /**
+    /**
      * Get the value of id_personnel
      *
      * @return  mixed
@@ -39,7 +39,6 @@ class Personnels
     public function setIdPersonnel($id_personnel)
     {
         $this->id_personnel = $id_personnel;
-
     }
     /**
      * Get the value of nom
@@ -60,7 +59,6 @@ class Personnels
     public function setNom($nom)
     {
         $this->nom = $nom;
-
     }
 
     /**
@@ -82,7 +80,6 @@ class Personnels
     public function setPrenom($prenom)
     {
         $this->prenom = $prenom;
-
     }
 
     /**
@@ -104,7 +101,6 @@ class Personnels
     public function setDateArrive($date_arrive)
     {
         $this->date_arrive = $date_arrive;
-
     }
 
     /**
@@ -126,7 +122,6 @@ class Personnels
     public function setTelephone($telephone)
     {
         $this->telephone = $telephone;
-
     }
 
     /**
@@ -148,7 +143,6 @@ class Personnels
     public function setEmail($email)
     {
         $this->email = $email;
-
     }
 
     /**
@@ -170,7 +164,6 @@ class Personnels
     public function setMdp($mdp)
     {
         $this->mdp = $mdp;
-
     }
 
     /**
@@ -192,7 +185,6 @@ class Personnels
     public function setDtc($dtc)
     {
         $this->dtc = $dtc;
-
     }
 
     /**
@@ -214,7 +206,6 @@ class Personnels
     public function setIdStatutPersonnels($Id_statut_personnels)
     {
         $this->Id_statut_personnels = $Id_statut_personnels;
-
     }
 
     /**
@@ -236,7 +227,5 @@ class Personnels
     public function setIdRole($Id_role)
     {
         $this->Id_role = $Id_role;
-
     }
-
 }

@@ -2,7 +2,7 @@
 
 	<div class="container-fluid">
 		<div class="d-flex flex-column justify-content-between sidebar align-items-center p-3">
-			</div>
+		</div>
 		<div class="main">
 			<div class="container">
 				<div class="row">
@@ -12,7 +12,7 @@
 								<h1 class="text-center ">404</h1>
 								<!-- div for messages -->
 								<div class="my-3 successAndErrorMessage"></div>
-								
+
 							</div>
 
 							<div class="contant_box_404">

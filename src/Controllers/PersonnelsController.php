@@ -20,8 +20,8 @@ class PersonnelsController
 
 
             if ($user) {
-                
-                
+
+
                 $_SESSION['connecte'] = true;
                 $_SESSION['Id_personnel'] = $user['Id_personnel'];
                 $_SESSION['nom'] = $user['nom'];
@@ -64,7 +64,7 @@ class PersonnelsController
                 header('Location: ' . HOME_URL . 'dashboard/personnel_detaille?Id_personnel=' . $Id_personnel . '&success=Evaluation ajoutée avec succès.');
                 exit();
             } else {
-                throw new Exception('Required fields are missing.');
+                throw new Exception('Des champs obligatoires sont manquants.');
             }
         } catch (Exception $e) {
             error_log("AjouterEvaluation Error: " . $e->getMessage()); // Log the error for debugging
@@ -85,6 +85,7 @@ class PersonnelsController
             $telephone = isset($_POST['telephone']) ? htmlspecialchars($_POST['telephone']) : null;
             $email = isset($_POST['email']) ? htmlspecialchars($_POST['email']) : null;
             $mdp = isset($_POST['mdp']) ? htmlspecialchars($_POST['mdp']) : null;
+            $mdpConfirmer = isset($_POST['mdpConfirmer']) ? htmlspecialchars($_POST['mdpConfirmer']) : null;
             $Id_role = isset($_POST['Id_role']) ? htmlspecialchars($_POST['Id_role']) : null;
             $Id_statut = isset($_POST['Id_statut']) ? htmlspecialchars($_POST['Id_statut']) : null;
 
@@ -92,20 +93,22 @@ class PersonnelsController
                 throw new Exception('cette action est reservée aux admins');
             }
 
-            if (!$nom || !$prenom || !$date_arrive || !$telephone || !$email || !$mdp || !$Id_role || !$Id_statut) {
-                throw new Exception('Required fields are missing.');
+            if (!$nom || !$prenom || !$date_arrive || !$telephone || !$email || !$mdp || !$mdpConfirmer || !$Id_role || !$Id_statut) {
+                throw new Exception('Des champs obligatoires sont manquants.');
             }
-
+            if ($mdp !== $mdpConfirmer) {
+                throw new Exception('Les mots de passe doivent être identiques.');
+            }
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                throw new Exception('Invalid email format.');
+                throw new Exception('Format d\'email invalide.');
             }
 
             if ($personnelRepository->emailExists($email)) {
-                throw new Exception('Email already exists. Please use a different email address.');
+                throw new Exception('Cet email existe déjà. Veuillez utiliser une autre adresse email.');
             }
 
             if (strlen($mdp) < 6) {
-                throw new Exception('Password must be at least 6 characters.');
+                throw new Exception('Le mot de passe doit contenir au moins 6 caractères..');
             }
 
             $personnelRepository->ajouterPersonnel($nom, $prenom, $date_arrive, $telephone, $email, $mdp, $Id_role, $Id_statut);
@@ -131,10 +134,10 @@ class PersonnelsController
             $personnelRepository = new PersonnelsRepository();
             $personnel = $personnelRepository->getPersonnelById($Id_personnel);
             if (!$personnel) {
-                throw new Exception('Personnel not found.');
+                throw new Exception('Ce personnel n\'existe pas.');
             }
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                throw new Exception('Invalid email format.');
+                throw new Exception('Format d\'email invalide.');
             }
             $personnelRepository->editPersonnel($Id_personnel, $nom, $prenom, $date_arrive, $telephone, $email);
             header('Location: ' . HOME_URL . 'dashboard?success=Personnel modifié avec succès.');
@@ -175,7 +178,7 @@ class PersonnelsController
             $date_fin = isset($_POST['date_fin']) ? htmlspecialchars($_POST['date_fin']) : null;
 
             if (!$Id_personnel || !$Id_statut) {
-                throw new Exception('Required fields are missing.');
+                throw new Exception('Des champs obligatoires sont manquants.');
             }
 
             if ($Id_statut !== '1') { // Assuming '1' is a Id_status for present

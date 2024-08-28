@@ -119,9 +119,5 @@
     </div>
     </div>
 </div>
-<script>
-    function confirmDelete() {
-        return confirm("Êtes-vous sûr de vouloir supprimer ce personnel ?");
-    }
-</script>
+
 <?php include_once __DIR__ . '/../includes/footer.php'; ?>

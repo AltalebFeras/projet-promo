@@ -40,9 +40,8 @@ class PersonnelsRepository
         } catch (PDOException $e) {
             // Log detailed error message
             error_log('Database Error: ' . $e->getMessage());
-            
-                throw new Exception('An error occurred during registration: ' . $e->getMessage());
-            
+
+            throw new Exception('An error occurred during registration: ' . $e->getMessage());
         }
     }
 
@@ -109,7 +108,7 @@ class PersonnelsRepository
             ');
             $query->bindParam(':Id_personnel', $Id_personnel, PDO::PARAM_INT);
             $query->execute();
-            
+
             $status = $query->fetch(PDO::FETCH_ASSOC);
             return $status;
         } catch (PDOException $e) {
@@ -117,7 +116,7 @@ class PersonnelsRepository
             throw new Exception('An error occurred while fetching the personnel status.');
         }
     }
-    
+
 
     public function getStatusOfThisPersonnel($Id_personnel)
     {

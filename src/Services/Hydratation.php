@@ -5,7 +5,8 @@ namespace src\Services;
 trait Hydratation
 {
 
-  public function __construct(array $data = array()) {
+  public function __construct(array $data = array())
+  {
     $this->hydrate($data);
   }
 

@@ -2,7 +2,7 @@
 // add the file prod.txt in the root of the project to ensure that your are in online server mode
 if (file_exists($_SERVER["DOCUMENT_ROOT"] . '/prod.txt')) {
     define("IS_PROD", TRUE);
-        // Database connection
+    // Database connection
     define("DB_HOST", "localhost");
     define("DB_PORT", "3306");
     define("DB_USER", "agtc");
@@ -12,10 +12,9 @@ if (file_exists($_SERVER["DOCUMENT_ROOT"] . '/prod.txt')) {
     define("HOME_URL", "/");
     define("Domain", "https://transport.feras.fr");
     define("PREFIXE", "transport_");
-  
 } else {
     define('IS_PROD', FALSE);
-        // Database connection
+    // Database connection
     define("DB_HOST", "localhost");
     define("DB_PORT", "3306");
     define("DB_USER", "agtc");
@@ -25,6 +24,4 @@ if (file_exists($_SERVER["DOCUMENT_ROOT"] . '/prod.txt')) {
     define('HOME_URL', '/');
     define("Domain", "http://agtc");
     define("PREFIXE", "transport_");
-
- 
 }

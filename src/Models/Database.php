@@ -22,7 +22,7 @@ final class Database
             echo "DB connection error : " . $error->getMessage();
         }
     }
-    
+
     public function getDB(): PDO
     {
         if ($this->DB instanceof PDO) {
@@ -31,5 +31,4 @@ final class Database
             throw new \RuntimeException("Database connection failed.");
         }
     }
-    
 }

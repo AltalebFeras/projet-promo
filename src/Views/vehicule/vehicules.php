@@ -1,10 +1,10 @@
 <div class="container">
     <div class="row nav-mobile align-items-center mb-5">
         <div class="col-lg-4 col-md-12 mobile-center nav-ipad">
-            <img class="logo-admin logo-ipad" src="<?= Domain . HOME_URL . 'assets/image/logo.png'; ?>"   alt="Logo de l'entreprise" />
+            <img class="logo-admin logo-ipad" src="<?= Domain . HOME_URL . 'assets/image/logo.png'; ?>" alt="Logo de l'entreprise" />
         </div>
 
-    
+
 
         <div class="col-lg-4 col-md-6">
             <div class="d-flex gap-1 mob-center">
@@ -51,7 +51,7 @@
                         <p class="card-text"><strong>Kilométrage:</strong> <?= htmlspecialchars($vehicule['km']) ?> km</p>
 
                         <div class="etat-vehicule p-4 my-4">
-                        <p><strong>État du véhicule:</strong> <?= htmlspecialchars($vehicule['etat_nom']) ?></p>
+                            <p><strong>État du véhicule:</strong> <?= htmlspecialchars($vehicule['etat_nom']) ?></p>
                         </div>
                         <a href="<?= Domain . HOME_URL . 'dashboard/vehicule_detaille?Id_vehicule=' . $vehicule['Id_vehicule'] ?>" class="btn rounded-pill">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">

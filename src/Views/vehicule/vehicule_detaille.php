@@ -93,17 +93,13 @@
 
                     <input type="hidden" name="action" value="ajouter_C_T">
                     <input type="hidden" name="Id_vehicule" value="<?= $_GET['Id_vehicule'] ?>">
-                    <button type="submit" class="btn rounded-pill mt-2" onclick="return confirmSubmit()">Mettre à jour</button>
+                    <button type="submit" class="btn rounded-pill mt-2" onclick="return UpdateCT()">Mettre à jour</button>
                 </form>
             </div>
     </div>
 <?php endif; ?>
 
-<script>
-    function confirmSubmit() {
-        return confirm("Are you sure you want to update?");
-    }
-</script>
+
 
 <!-- Comment Sections -->
 <div class="row mb-4">
