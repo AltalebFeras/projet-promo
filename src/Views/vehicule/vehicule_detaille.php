@@ -47,7 +47,7 @@
                         </select>
                         <input type="hidden" name="action" value="declarer_un_changement_du_lieu">
                         <input type="hidden" name="Id_vehicule" value="<?= $_GET['Id_vehicule'] ?>">
-                        <button type="submit" class="btn btn-primary mt-2">Déclarer</button>
+                        <button type="submit" class="btn rounded-pill  mt-2">Déclarer</button>
                     </form>
 
                 <?php endif; ?>
@@ -108,7 +108,7 @@
 <!-- Comment Sections -->
 <div class="row mb-4">
     <div class="col-md-6">
-        <div class="card">
+        <div class="card mb-4">
             <div class="card-body">
                 <h5 class="card-title">Commentaire conducteur</h5>
                 <?php if (!empty($commentaire_conducteur)): ?>
@@ -123,7 +123,7 @@
     </div>
 
     <div class="col-md-6">
-        <div class="card">
+        <div class="card mb-3">
             <div class="card-body">
                 <h5 class="card-title">Commentaire mécanos</h5>
                 <?php if (!empty($commentaire_mecanicien)): ?>
