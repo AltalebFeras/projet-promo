@@ -86,9 +86,7 @@ CREATE TABLE IF NOT EXISTS `transport_evaluations` (
 -- Dumping data for table `transport_evaluations`
 --
 
-INSERT INTO `transport_evaluations` (`Id_evaluation`, `texte`, `dtc`, `Id_admin`, `Id_personnel`) VALUES
-(25, 'dfgerer', '2024-08-22 16:57:51', 1, 3),
-(26, 'dsd', '2024-08-23 10:11:07', 1, 2);
+
 
 -- --------------------------------------------------------
 
@@ -118,9 +116,9 @@ CREATE TABLE IF NOT EXISTS `transport_personnels` (
 --
 
 INSERT INTO `transport_personnels` (`Id_personnel`, `nom`, `prenom`, `date_arrive`, `telephone`, `email`, `mdp`, `dtc`, `Id_role`) VALUES
-(1, 'ss', 'feras', '2024-08-20', 2147483647, 'admin@agtc.fr', '$2y$10$jED32m6q7EvYI0dHze9N8e.yY3sQ7sdSD38km/shhgrO/.znkR.P.', '2024-08-20 07:26:12', 1),
-(2, 'sss', 'sam', '2024-08-20', 47, 'conducteur@agtc.fr', '$2y$10$X6DmEq47ZGn37uxb.3YPne2DoHQnDv0zO1Sa973zXcuFSyC7LkZZa', '2024-08-20 11:22:37', 3),
-(3, 'EF', 'joseph', '2024-08-20', 2147483647, 'mecanicien@agtc.fr', '$2y$10$fK/3c0A5eLbZa3AImV6gUeUi4RSF/xwBiCaYJcz0n4BC90XdQUADO', '2024-08-20 11:23:46', 2);
+(1, 'Dupont', 'Luc', '2024-08-20', 2147483647, 'admin@agtc.fr', '$2y$10$jED32m6q7EvYI0dHze9N8e.yY3sQ7sdSD38km/shhgrO/.znkR.P.', '2024-08-20 07:26:12', 1),
+(2, 'Napier', 'Sam', '2024-08-20', 47, 'conducteur@agtc.fr', '$2y$10$X6DmEq47ZGn37uxb.3YPne2DoHQnDv0zO1Sa973zXcuFSyC7LkZZa', '2024-08-20 11:22:37', 3),
+(3, 'Lizotte', 'Josephine', '2024-08-20', 2147483647, 'mecanicien@agtc.fr', '$2y$10$fK/3c0A5eLbZa3AImV6gUeUi4RSF/xwBiCaYJcz0n4BC90XdQUADO', '2024-08-20 11:23:46', 2);
 
 -- --------------------------------------------------------
 
@@ -195,7 +193,6 @@ CREATE TABLE IF NOT EXISTS `transport_statut_personnel` (
 INSERT INTO `transport_statut_personnel` (`Id_statut_personnels`, `Id_statut`, `Id_personnel`, `date_debut`, `date_fin`, `dtc`) VALUES
 (22, 1, 1, '0000-00-00', '0000-00-00', '2024-08-23 10:10:53'),
 (20, 1, 2, '0000-00-00', '0000-00-00', '2024-08-22 16:32:39'),
-(19, 1, 1, '0000-00-00', '0000-00-00', '2024-08-22 16:32:25'),
 (18, 1, 3, '0000-00-00', '0000-00-00', '2024-08-22 16:32:11');
 
 -- --------------------------------------------------------
@@ -222,20 +219,20 @@ CREATE TABLE IF NOT EXISTS `transport_vehicules` (
 --
 
 INSERT INTO `transport_vehicules` (`Id_vehicule`, `numero`, `type`, `date_ct`, `km`, `Id_etat_vehicule`) VALUES
-(1, 'BUS001', 'bus', '2024-08-01', 10000, 1),
-(2, 'BUS002', 'bus', '2024-08-02', 10500, 1),
-(3, 'BUS003', 'bus', '2024-08-03', 11000, 1),
-(4, 'BUS004', 'bus', '2024-08-04', 11500, 1),
-(5, 'BUS005', 'bus', '2024-08-05', 12000, 1),
-(6, 'BUS006', 'bus', '2024-08-06', 12500, 1),
-(7, 'BUS007', 'bus', '2024-08-07', 13000, 1),
-(8, 'BUS008', 'bus', '2024-08-08', 13500, 1),
-(9, 'BUS009', 'bus', '2024-08-09', 14000, 1),
+(1, 'BUS001', 'bus', '2024-08-01', 1000, 1),
+(2, 'BUS002', 'bus', '2024-08-02', 1500, 2),
+(3, 'BUS003', 'bus', '2024-08-03', 11000, 3),
+(4, 'BUS004', 'bus', '2024-08-04', 1500, 1),
+(5, 'BUS005', 'bus', '2024-08-05', 1000, 2),
+(6, 'BUS006', 'bus', '2024-08-06', 1500, 3),
+(7, 'BUS007', 'bus', '2024-08-07', 1000, 1),
+(8, 'BUS008', 'bus', '2024-08-08', 1500, 2),
+(9, 'BUS009', 'bus', '2024-08-09', 1000, 2),
 (10, 'BUS010', 'bus', '2024-08-10', 14500, 1),
-(11, 'TRAM001', 'tram', '2024-08-11', 20000, 1),
-(12, 'TRAM002', 'tram', '2024-08-12', 20500, 1),
-(13, 'TRAM003', 'tram', '2024-08-13', 21000, 1),
-(14, 'TRAM004', 'tram', '2024-08-14', 21500, 1);
+(11, 'TRAM001', 'tram', '2024-08-11', 2000, 1),
+(12, 'TRAM002', 'tram', '2024-08-12', 2500, 3),
+(13, 'TRAM003', 'tram', '2024-08-13', 2000, 1),
+(14, 'TRAM004', 'tram', '2024-08-14', 2500, 3);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
