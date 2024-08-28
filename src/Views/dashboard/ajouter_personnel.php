@@ -21,7 +21,7 @@
             <?php endif; ?>
         </div>
         <div class="col-lg-4 col-md-6">
-            <form action="<?= Domain . HOME_URL . 'dashboard/personnel_detaille' ?>" method="POST" class="mb-4" onsubmit="return validateForm();
+            <form action="<?= Domain . HOME_URL . 'dashboard/personnel_detaille' ?>" method="POST" class="mb-4" onsubmit="return validateFormAjouterPersonnel();
     ">
 
 

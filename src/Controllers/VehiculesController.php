@@ -110,6 +110,12 @@ class VehiculesController
             if (!$commentaire) {
                 throw new Exception('Veuillez renseigner un commentaire.');
             }
+            if (strlen($commentaire) < 10) {
+                throw new Exception('Le mot de passe doit contenir au moins 6 caractères.');
+            }
+            if (strlen($commentaire) > 250) {
+                throw new Exception('L\'évaluation ne peut dépasser 250 caractères.');
+            }
             $vehiculesRepository = new VehiculesRepository();
             $vehiculesRepository->ajouterCommentaire($Id_vehicule, $Id_personnel, $commentaire);
             header('Location: ' . HOME_URL . 'dashboard/vehicule_detaille?Id_vehicule=' . $Id_vehicule . '&success=Commentaire ajouté avec succès.');

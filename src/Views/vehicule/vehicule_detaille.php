@@ -140,7 +140,7 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Ajouter un commentaire</h5>
-                <form action="<?= Domain . HOME_URL ?>dashboard/vehicule_detaille" method="post">
+                <form action="<?= Domain . HOME_URL ?>dashboard/vehicule_detaille" method="post" onsubmit="return validateFormAjouterPersonnel();">
                     <textarea name="texte" id="texte" class="form-control mb-3" rows="4" required placeholder="Zone pour ajouter le commentaire"></textarea>
                     <input type="hidden" name="action" value="ajouter_commentaire">
                     <input type="hidden" name="Id_vehicule" value="<?= $_GET['Id_vehicule'] ?>">
