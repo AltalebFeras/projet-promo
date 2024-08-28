@@ -29,22 +29,20 @@ class PersonnelsRepository
             $user = $query->fetch(PDO::FETCH_ASSOC);
 
             if (!$user) {
-                throw new Exception('user not found');
+                throw new Exception('Votre mot de passe et/ou votre email sont incorrect');
             }
 
             // Verify mdp
             if (!password_verify($mdp, $user['mdp'])) {
-                throw new Exception('Incorrect  mdp.');
+                throw new Exception('Votre mot de passe et/ou votre email sont incorrect');
             }
             return $user;
         } catch (PDOException $e) {
             // Log detailed error message
             error_log('Database Error: ' . $e->getMessage());
-            if ($e->getCode() == 23000) { // Duplicate entry error code
-                throw new Exception('Username or email already exists.');
-            } else {
+            
                 throw new Exception('An error occurred during registration: ' . $e->getMessage());
-            }
+            
         }
     }
 

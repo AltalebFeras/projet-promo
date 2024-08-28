@@ -20,8 +20,8 @@ class PersonnelsController
 
 
             if ($user) {
-                // var_dump($user);
-                // die();
+                
+                
                 $_SESSION['connecte'] = true;
                 $_SESSION['Id_personnel'] = $user['Id_personnel'];
                 $_SESSION['nom'] = $user['nom'];
