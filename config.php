@@ -1,5 +1,6 @@
 <?php
-// add the file prod.txt in the root of the project to ensure that your are in online server mode
+// add the file prod.txt in the root of the project
+// to ensure that your are in online server mode
 if (file_exists($_SERVER["DOCUMENT_ROOT"] . '/prod.txt')) {
     define("IS_PROD", TRUE);
     // Database connection

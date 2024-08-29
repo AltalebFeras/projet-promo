@@ -87,6 +87,7 @@ function validatePersonnelDetailsForm() {
 // Validate Change Status Form
 function validateChangeStatusForm() {
   const statut = document.getElementById("statut").value;
+  console.log(statut);
   const dateDebut = document.getElementById("date_debut").value;
   const dateFin = document.getElementById("date_fin").value;
 
@@ -97,13 +98,22 @@ function validateChangeStatusForm() {
   if (!statut) {
     errorMessages.innerHTML += "<p>Veuillez sélectionner un statut.</p>";
   }
-  if (!dateDebut) {
-    errorMessages.innerHTML +=
-      "<p>Veuillez sélectionner une date de début.</p>";
-  }
-  if (dateDebut && dateFin && dateDebut > dateFin) {
-    errorMessages.innerHTML +=
-      "<p>La date de début ne peut pas être après la date de fin.</p>";
+  
+  if (statut != 1) {
+    // DateDebut is required for all statuses except 'present' which is  equal to 1
+    if (!dateDebut) {
+      errorMessages.innerHTML += "<p>Veuillez sélectionner une date de début.</p>";
+    }
+    
+    // DateDebut is required for all statuses except 'present' which is  equal to 1
+    if (!dateFin) {
+      errorMessages.innerHTML += "<p>Veuillez sélectionner une date de fin.</p>";
+    }
+    
+    //  this to ensure DateDebut is before DateFin
+    if (dateDebut && dateFin && dateDebut > dateFin) {
+      errorMessages.innerHTML += "<p>La date de début ne peut pas être après la date de fin.</p>";
+    }
   }
 
   if (errorMessages.innerHTML !== "") {

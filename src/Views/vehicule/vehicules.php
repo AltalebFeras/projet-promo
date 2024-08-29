@@ -45,13 +45,13 @@
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card">
                     <div class="p-5 card-body">
-                        <h5 class="card-title"><?= htmlspecialchars($vehicule['numero']) ?></h5>
-                        <p class="card-text"><strong>Type:</strong> <?= htmlspecialchars($vehicule['type']) ?></p>
-                        <p class="card-text"><strong>Date de CT:</strong> <?= htmlspecialchars($vehicule['date_ct']) ?></p>
-                        <p class="card-text"><strong>Kilométrage:</strong> <?= htmlspecialchars($vehicule['km']) ?> km</p>
+                        <h5 class="card-title"><?= $vehicule['numero'] ?></h5>
+                        <p class="card-text"><strong>Type:</strong> <?= $vehicule['type'] ?></p>
+                        <p class="card-text"><strong>Date de CT:</strong> <?= $vehicule['date_ct'] ?></p>
+                        <p class="card-text"><strong>Kilométrage:</strong> <?= $vehicule['km'] ?> km</p>
 
                         <div class="etat-vehicule p-4 my-4">
-                            <p><strong>État du véhicule:</strong> <?= htmlspecialchars($vehicule['etat_nom']) ?></p>
+                            <p><strong>État du véhicule:</strong> <?= $vehicule['etat_nom'] ?></p>
                         </div>
                         <a href="<?= Domain . HOME_URL . 'dashboard/vehicule_detaille?Id_vehicule=' . $vehicule['Id_vehicule'] ?>" class="btn rounded-pill">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">

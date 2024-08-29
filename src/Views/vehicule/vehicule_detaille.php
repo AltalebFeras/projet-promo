@@ -108,9 +108,9 @@
             <div class="card-body">
                 <h5 class="card-title">Commentaire conducteur</h5>
                 <?php if (!empty($commentaire_conducteur)): ?>
-                    <p><?= htmlspecialchars($commentaire_conducteur[0]['texte']) ?></p>
+                    <p><?= $commentaire_conducteur[0]['texte'] ?></p>
                     <p class="text-muted"><?= date('d M. Y H:i', strtotime($commentaire_conducteur[0]['dtc'])) ?></p>
-                    <p><strong>Par:</strong> <?= htmlspecialchars($commentaire_conducteur[0]['prenom']) ?> <?= htmlspecialchars($commentaire_conducteur[0]['nom']) ?></p>
+                    <p><strong>Par:</strong> <?= $commentaire_conducteur[0]['prenom'] ?> <?= $commentaire_conducteur[0]['nom'] ?></p>
                 <?php else: ?>
                     <p>Aucun commentaire disponible.</p>
                 <?php endif; ?>
@@ -123,9 +123,9 @@
             <div class="card-body">
                 <h5 class="card-title">Commentaire mécanos</h5>
                 <?php if (!empty($commentaire_mecanicien)): ?>
-                    <p><?= htmlspecialchars($commentaire_mecanicien[0]['texte']) ?></p>
+                    <p><?= $commentaire_mecanicien[0]['texte'] ?></p>
                     <p class="text-muted"><?= date('d M. Y H:i', strtotime($commentaire_mecanicien[0]['dtc'])) ?></p>
-                    <p><strong>Par:</strong> <?= htmlspecialchars($commentaire_mecanicien[0]['prenom']) ?> <?= htmlspecialchars($commentaire_mecanicien[0]['nom']) ?></p>
+                    <p><strong>Par:</strong> <?= $commentaire_mecanicien[0]['prenom'] ?> <?= $commentaire_mecanicien[0]['nom'] ?></p>
                 <?php else: ?>
                     <p>Aucun commentaire disponible.</p>
                 <?php endif; ?>
