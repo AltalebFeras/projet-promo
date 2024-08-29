@@ -41,7 +41,7 @@ CREATE TABLE transport_personnels
   nom          VARCHAR(50)  NOT NULL,
   prenom       VARCHAR(50)  NOT NULL,
   date_arrive  DATE         NOT NULL,
-  telephone    INT          NOT NULL,
+  telephone    VARCHAR(50)  NOT NULL,
   email        VARCHAR(150) NOT NULL,
   mdp          VARCHAR(200) NOT NULL,
   dtc          DATETIME     NOT NULL,
@@ -67,18 +67,18 @@ ALTER TABLE transport_roles
 
 CREATE TABLE transport_statut
 (
-  Id_status INT          NOT NULL AUTO_INCREMENT,
+  Id_statut INT          NOT NULL AUTO_INCREMENT,
   nom       VARCHAR(150) NOT NULL,
-  PRIMARY KEY (Id_status)
+  PRIMARY KEY (Id_statut)
 );
 
 ALTER TABLE transport_statut
-  ADD CONSTRAINT UQ_Id_status UNIQUE (Id_status);
+  ADD CONSTRAINT UQ_Id_statut UNIQUE (Id_statut);
 
 CREATE TABLE transport_statut_personnel
 (
   Id_statut_personnels INT  NOT NULL AUTO_INCREMENT,
-  Id_status            INT  NOT NULL,
+  Id_statut            INT  NOT NULL,
   Id_personnel         INT  NOT NULL,
   date_debut           DATE NULL    ,
   date_fin             DATE NULL    ,
@@ -134,8 +134,8 @@ ALTER TABLE transport_evaluations
 
 ALTER TABLE transport_statut_personnel
   ADD CONSTRAINT FK_transport_statut_TO_transport_statut_personnel
-    FOREIGN KEY (Id_status)
-    REFERENCES transport_statut (Id_status);
+    FOREIGN KEY (Id_statut)
+    REFERENCES transport_statut (Id_statut);
 
 ALTER TABLE transport_statut_personnel
   ADD CONSTRAINT FK_transport_personnels_TO_transport_statut_personnel

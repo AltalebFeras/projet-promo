@@ -154,11 +154,20 @@ class PersonnelsRepository
         $evaluation = $query->fetch(PDO::FETCH_ASSOC);
 
         if ($evaluation !== false) {
-            return $evaluation['texte'];
+            return $evaluation;
         } else {
             return null;
         }
     }
+    public function getTheLastEvaluationsForEachPersonnel($Id_personnel)
+{
+    $query = $this->DB->prepare('SELECT * FROM ' . PREFIXE . 'evaluations WHERE Id_personnel = :Id_personnel ORDER BY dtc DESC LIMIT 1');
+    $query->execute(['Id_personnel' => $Id_personnel]);
+    $evaluation = $query->fetch(PDO::FETCH_ASSOC);
+
+    return $evaluation ? [$evaluation] : []; 
+}
+
     public function getPersonnelById($Id_personnel)
     {
         $query = $this->DB->prepare('SELECT * FROM ' . PREFIXE . 'personnels WHERE Id_personnel = :Id_personnel');
@@ -212,8 +221,8 @@ class PersonnelsRepository
 
             // Insert personnel status
             $statusQuery = $this->DB->prepare('
-                INSERT INTO ' . PREFIXE . 'statut_personnel (Id_statut, Id_personnel, date_debut, date_fin)
-                VALUES (:Id_statut, :Id_personnel, :date_debut, :date_fin)
+                INSERT INTO ' . PREFIXE . 'statut_personnel (Id_statut, Id_personnel, date_debut, date_fin, dtc)
+                VALUES (:Id_statut, :Id_personnel, :date_debut, :date_fin, NOW())
             ');
 
             $statusQuery->execute([

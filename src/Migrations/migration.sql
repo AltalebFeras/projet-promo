@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `transport_personnels` (
   `nom` varchar(50) NOT NULL,
   `prenom` varchar(50) NOT NULL,
   `date_arrive` date NOT NULL,
-  `telephone` int NOT NULL,
+  `telephone` varchar(50) NOT NULL,
   `email` varchar(150) NOT NULL,
   `mdp` varchar(200) NOT NULL,
   `dtc` datetime NOT NULL,
@@ -116,9 +116,9 @@ CREATE TABLE IF NOT EXISTS `transport_personnels` (
 --
 
 INSERT INTO `transport_personnels` (`Id_personnel`, `nom`, `prenom`, `date_arrive`, `telephone`, `email`, `mdp`, `dtc`, `Id_role`) VALUES
-(1, 'Dupont', 'Luc', '2024-08-20', 2147483647, 'admin@agtc.fr', '$2y$10$jED32m6q7EvYI0dHze9N8e.yY3sQ7sdSD38km/shhgrO/.znkR.P.', '2024-08-20 07:26:12', 1),
-(2, 'Napier', 'Sam', '2024-08-20', 47, 'conducteur@agtc.fr', '$2y$10$X6DmEq47ZGn37uxb.3YPne2DoHQnDv0zO1Sa973zXcuFSyC7LkZZa', '2024-08-20 11:22:37', 3),
-(3, 'Lizotte', 'Josephine', '2024-08-20', 2147483647, 'mecanicien@agtc.fr', '$2y$10$fK/3c0A5eLbZa3AImV6gUeUi4RSF/xwBiCaYJcz0n4BC90XdQUADO', '2024-08-20 11:23:46', 2);
+(1, 'Dupont', 'Luc', '2024-08-20', '0782585884', 'admin@agtc.fr', '$2y$10$jED32m6q7EvYI0dHze9N8e.yY3sQ7sdSD38km/shhgrO/.znkR.P.', '2024-08-20 07:26:12', 1),
+(2, 'Napier', 'Sam', '2024-08-20', '0785444484', 'conducteur@agtc.fr', '$2y$10$X6DmEq47ZGn37uxb.3YPne2DoHQnDv0zO1Sa973zXcuFSyC7LkZZa', '2024-08-20 11:22:37', 3),
+(3, 'Lizotte', 'Josephine', '2024-08-20', '0736575884', 'mecanicien@agtc.fr', '$2y$10$fK/3c0A5eLbZa3AImV6gUeUi4RSF/xwBiCaYJcz0n4BC90XdQUADO', '2024-08-20 11:23:46', 2);
 
 -- --------------------------------------------------------
 
@@ -154,7 +154,7 @@ CREATE TABLE IF NOT EXISTS `transport_statut` (
   `Id_statut` int NOT NULL AUTO_INCREMENT,
   `nom` varchar(150) NOT NULL,
   PRIMARY KEY (`Id_statut`),
-  UNIQUE KEY `UQ_Id_status` (`Id_statut`)
+  UNIQUE KEY `UQ_Id_statut` (`Id_statut`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --

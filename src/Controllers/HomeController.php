@@ -28,8 +28,12 @@ class HomeController
 
             $personnel['status_name'] = $status ? $status['status_name'] : 'Aucun statut';
 
+            $evaluations = $personnelsRepository->getTheLastEvaluationsForEachPersonnel($Id_personnel);
+            $personnel['evaluations'] = $evaluations;
+
             $allPersonnelsWithStatus[] = $personnel;
         }
+        
 
         $vehiculesRepository = new VehiculesRepository;
         $vehicules = $vehiculesRepository->getAllVehicules();
@@ -49,9 +53,10 @@ class HomeController
         $personnel = $personnelsRepository->getPersonnelById($Id_personnel);
         $statuts = $personnelsRepository->getAllStatus();
         $statuts_personnel = $personnelsRepository->getStatusOfThisPersonnel($Id_personnel);
-
+    
         include_once __DIR__ . '/../Views/dashboard/personnel_detaille.php';
     }
+    
 
     public function afficherPageVehiculeDetaille($Id_vehicule)
     {

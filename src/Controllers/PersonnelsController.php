@@ -109,8 +109,8 @@ class PersonnelsController
                 throw new Exception('Cet email existe déjà. Veuillez utiliser une autre adresse email.');
             }
 
-            if (strlen($mdp) < 6) {
-                throw new Exception('Le mot de passe doit contenir au moins 6 caractères..');
+            if (strlen($mdp) < 8) {
+                throw new Exception('Le mot de passe doit contenir au moins 8 caractères..');
             }
 
             $personnelRepository->ajouterPersonnel($nom, $prenom, $date_arrive, $telephone, $email, $mdp, $Id_role, $Id_statut, $date_debut, $date_fin);

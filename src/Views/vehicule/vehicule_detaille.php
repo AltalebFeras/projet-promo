@@ -1,6 +1,9 @@
 <?php include_once __DIR__ . '/../includes/header.php'; ?>
 
 <div class="container mt-5">
+<div class="d-flex flex-row justify-content-center titre-detail">
+        <h2>Détails du véhicule</h2>
+    </div>
     <a class="btn rounded-pill" href="<?= Domain . HOME_URL . 'dashboard' ?>">Retour</a>
     <!-- Logo and Title Section -->
     <div class="text-center mb-5">
@@ -8,6 +11,7 @@
         <h2 class="fw-bold"><?= $vehicule['numero'] ?? 'Non disponible' ?></h2>
         <p class="text-muted"><?= $vehicule['type'] ?? 'Non disponible' ?></p>
     </div>
+    <div id="errorMessages" class="alert alert-danger" style="display:none;"></div>
 
     <!-- Alert Section -->
     <div class="alert-container">
@@ -117,7 +121,7 @@
             </div>
         </div>
     </div>
-
+    
     <div class="col-md-6">
         <div class="card mb-3">
             <div class="card-body">
@@ -126,14 +130,15 @@
                     <p><?= $commentaire_mecanicien[0]['texte'] ?></p>
                     <p class="text-muted"><?= date('d M. Y H:i', strtotime($commentaire_mecanicien[0]['dtc'])) ?></p>
                     <p><strong>Par:</strong> <?= $commentaire_mecanicien[0]['prenom'] ?> <?= $commentaire_mecanicien[0]['nom'] ?></p>
-                <?php else: ?>
-                    <p>Aucun commentaire disponible.</p>
-                <?php endif; ?>
+                    <?php else: ?>
+                        <p>Aucun commentaire disponible.</p>
+                        <?php endif; ?>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-
+        
+        <div id="errorMessagesForComments" class="alert alert-danger" style="display:none;"></div>
 <!-- Add Comment Section -->
 <div class="row mb-5">
     <div class="col-md-12">

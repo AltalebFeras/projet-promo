@@ -111,7 +111,7 @@ class VehiculesController
                 throw new Exception('Veuillez renseigner un commentaire.');
             }
             if (strlen($commentaire) < 10) {
-                throw new Exception('Le mot de passe doit contenir au moins 6 caractères.');
+                throw new Exception('Le mot de passe doit contenir au moins 10 caractères.');
             }
             if (strlen($commentaire) > 250) {
                 throw new Exception('L\'évaluation ne peut dépasser 250 caractères.');

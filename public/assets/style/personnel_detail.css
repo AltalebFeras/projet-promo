@@ -103,8 +103,8 @@
 
 .detail-body{
     width: 100%;
-    padding-right: var(--bs-gutter-x, .75rem);
-    padding-left: var(--bs-gutter-x, 6.75rem) !important;
+    padding-right: var(--bs-gutter-x, 1rem);
+    padding-left: var(--bs-gutter-x, 1rem) !important;
     margin-right: auto;
     margin-left: auto;
 }
