@@ -88,6 +88,8 @@ class PersonnelsController
             $mdpConfirmer = isset($_POST['mdpConfirmer']) ? htmlspecialchars($_POST['mdpConfirmer']) : null;
             $Id_role = isset($_POST['Id_role']) ? htmlspecialchars($_POST['Id_role']) : null;
             $Id_statut = isset($_POST['Id_statut']) ? htmlspecialchars($_POST['Id_statut']) : null;
+            $date_debut =  isset($_POST['date_debut']) ? htmlspecialchars($_POST['date_debut']) : null;
+            $date_fin =  isset($_POST['date_fin']) ? htmlspecialchars($_POST['date_fin']) : null;
 
             if ($_SESSION['role'] !== 'admin') {
                 throw new Exception('cette action est reservée aux admins');
@@ -111,7 +113,7 @@ class PersonnelsController
                 throw new Exception('Le mot de passe doit contenir au moins 6 caractères..');
             }
 
-            $personnelRepository->ajouterPersonnel($nom, $prenom, $date_arrive, $telephone, $email, $mdp, $Id_role, $Id_statut);
+            $personnelRepository->ajouterPersonnel($nom, $prenom, $date_arrive, $telephone, $email, $mdp, $Id_role, $Id_statut, $date_debut, $date_fin);
 
             header('Location: ' . HOME_URL . 'dashboard?success=Personnel ajouté avec succès.');
             exit();

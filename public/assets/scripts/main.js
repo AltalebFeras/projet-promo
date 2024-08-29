@@ -6,50 +6,59 @@ function validateFormAjouterPersonnel() {
   const nom = document.getElementById("nom").value.trim();
   const prenom = document.getElementById("prenom").value.trim();
   const dateArrivee = document.getElementById("date_arrive").value;
-  const telephone = document.getElementById("telephone").value;
+  const telephone = document.getElementById("telephone").value.trim();
   const email = document.getElementById("email").value.trim();
   const mdp = document.getElementById("mdp").value;
-  const dateDebutStatut = document.getElementById("date_debut").value;
-  const dateFinStatut = document.getElementById("date_fin").value;
+  const statut = document.getElementById("Id_statut").value;
+  const dateDebut = document.getElementById("date_debut").value;
+  const dateFin = document.getElementById("date_fin").value;
 
   const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s'-]+$/;
+  
   if (!nameRegex.test(nom)) {
-    errorMessages.innerHTML +=
-      "<p>Le nom ne doit contenir que des lettres, espaces, tirets ou apostrophes.</p>";
+    errorMessages.innerHTML += "<p>Le nom ne doit contenir que des lettres, espaces, tirets ou apostrophes.</p>";
   }
   if (!nameRegex.test(prenom)) {
-    errorMessages.innerHTML +=
-      "<p>Le prénom ne doit contenir que des lettres, espaces, tirets ou apostrophes.</p>";
+    errorMessages.innerHTML += "<p>Le prénom ne doit contenir que des lettres, espaces, tirets ou apostrophes.</p>";
   }
 
   const telRegex = /^[0-9]{10}$/;
+  
   if (!telRegex.test(telephone)) {
-    errorMessages.innerHTML +=
-      "<p>Le numéro de téléphone doit contenir exactement 10 chiffres.</p>";
+    errorMessages.innerHTML += "<p>Le numéro de téléphone doit contenir exactement 10 chiffres.</p>";
   }
 
   if (!email) {
-    errorMessages.innerHTML +=
-      "<p>Veuillez entrer une adresse email valide.</p>";
+    errorMessages.innerHTML += "<p>Veuillez entrer une adresse email valide.</p>";
   }
 
   if (mdp.length < 8) {
-    errorMessages.innerHTML +=
-      "<p>Le mot de passe doit contenir au moins 6 caractères.</p>";
+    errorMessages.innerHTML += "<p>Le mot de passe doit contenir au moins 8 caractères.</p>";
   }
 
-  if (dateDebutStatut && dateFinStatut && dateFinStatut < dateDebutStatut) {
-    errorMessages.innerHTML +=
-      "<p>La date de fin de statut ne peut pas être avant la date de début.</p>";
+  // Conditional validation for statut
+  if (statut != "1") {  // Status other than 'present'
+    if (!dateDebut) {
+      errorMessages.innerHTML += "<p>Veuillez sélectionner une date de début.</p>";
+    }
+    if (!dateFin) {
+      errorMessages.innerHTML += "<p>Veuillez sélectionner une date de fin.</p>";
+    }
+
+    // to ensure that the start date is before the end date
+    if (dateDebut && dateFin && dateDebut > dateFin) {
+      errorMessages.innerHTML += "<p>La date de début ne peut pas être après la date de fin.</p>";
+    }
   }
 
   if (errorMessages.innerHTML) {
     errorMessages.style.display = "block";
-    return false;
+    return false;  // Prevent form submission
   }
 
-  return true;
+  return true;  // Allow form submission
 }
+
 
 // Validate Personnel Details Forms
 function validatePersonnelDetailsForm() {
@@ -87,7 +96,6 @@ function validatePersonnelDetailsForm() {
 // Validate Change Status Form
 function validateChangeStatusForm() {
   const statut = document.getElementById("statut").value;
-  console.log(statut);
   const dateDebut = document.getElementById("date_debut").value;
   const dateFin = document.getElementById("date_fin").value;
 
@@ -98,21 +106,24 @@ function validateChangeStatusForm() {
   if (!statut) {
     errorMessages.innerHTML += "<p>Veuillez sélectionner un statut.</p>";
   }
-  
+
   if (statut != 1) {
     // DateDebut is required for all statuses except 'present' which is  equal to 1
     if (!dateDebut) {
-      errorMessages.innerHTML += "<p>Veuillez sélectionner une date de début.</p>";
+      errorMessages.innerHTML +=
+        "<p>Veuillez sélectionner une date de début.</p>";
     }
-    
+
     // DateDebut is required for all statuses except 'present' which is  equal to 1
     if (!dateFin) {
-      errorMessages.innerHTML += "<p>Veuillez sélectionner une date de fin.</p>";
+      errorMessages.innerHTML +=
+        "<p>Veuillez sélectionner une date de fin.</p>";
     }
-    
+
     //  this to ensure DateDebut is before DateFin
     if (dateDebut && dateFin && dateDebut > dateFin) {
-      errorMessages.innerHTML += "<p>La date de début ne peut pas être après la date de fin.</p>";
+      errorMessages.innerHTML +=
+        "<p>La date de début ne peut pas être après la date de fin.</p>";
     }
   }
 
@@ -154,7 +165,7 @@ function UpdateCT() {
   return confirm("Are you sure you want to update?");
 }
 
-function validateFormAjouterPersonnel() {
+function validateFormAjouterCommentaire() {
   const texte = document.getElementById("texte").value.trim();
 
   const errorMessages = document.getElementById("errorMessages");
@@ -163,11 +174,11 @@ function validateFormAjouterPersonnel() {
 
   if (texte.length < 10) {
     errorMessages.innerHTML +=
-      "<p>L'évaluation doit contenir au moins 10 caractères.</p>";
+      "<p>Le commentaire doit contenir au moins 10 caractères.</p>";
   }
   if (texte.length > 250) {
     errorMessages.innerHTML +=
-      "<p>L'évaluation ne peut dépasser 250 caractères.</p>";
+      "<p>Le commentaire ne peut dépasser 250 caractères.</p>";
   }
   if (errorMessages.innerHTML !== "") {
     errorMessages.style.display = "block";

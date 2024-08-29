@@ -191,7 +191,7 @@ class PersonnelsRepository
         }
     }
 
-    public function ajouterPersonnel($nom, $prenom, $date_arrive, $telephone, $email, $mdp, $Id_role, $Id_statut)
+    public function ajouterPersonnel($nom, $prenom, $date_arrive, $telephone, $email, $mdp, $Id_role, $Id_statut, $date_debut, $date_fin)
     {
         try {
             $query = $this->DB->prepare('
@@ -212,13 +212,15 @@ class PersonnelsRepository
 
             // Insert personnel status
             $statusQuery = $this->DB->prepare('
-                INSERT INTO ' . PREFIXE . 'statut_personnel (Id_statut, Id_personnel, date_debut) 
-                VALUES (:Id_statut, :Id_personnel, NOW())
+                INSERT INTO ' . PREFIXE . 'statut_personnel (Id_statut, Id_personnel, date_debut, date_fin)
+                VALUES (:Id_statut, :Id_personnel, :date_debut, :date_fin)
             ');
 
             $statusQuery->execute([
                 'Id_statut' => $Id_statut,
-                'Id_personnel' => $Id_personnel
+                'Id_personnel' => $Id_personnel,
+                'date_debut' => $date_debut,
+                'date_fin' => $date_fin
             ]);
         } catch (PDOException $e) {
             error_log("Database Error: " . $e->getMessage());
