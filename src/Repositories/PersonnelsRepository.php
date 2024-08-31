@@ -50,8 +50,7 @@ class PersonnelsRepository
         $query = $this->DB->prepare('SELECT * FROM ' . PREFIXE . 'roles WHERE Id_role = :Id_role');
         $query->execute(['Id_role' => $Id_role]);
         $role = $query->fetch(PDO::FETCH_ASSOC);
-        // var_dump( $role['nom']);
-        // die();
+       
         return $role['nom'];
     }
     public function getAllPersonnelsDetailed()
